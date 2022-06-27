@@ -9,7 +9,6 @@ def init_app():
     with app.app_context():
         # Import parts of our application
         from .home import home
-        from .assets import compile_static_assets
 
         # Register Blueprints
         app.register_blueprint(home.home_bp)
