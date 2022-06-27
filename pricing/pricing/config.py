@@ -1,5 +1,4 @@
 import psycopg2
-from config import config
 from os import environ, path
 from dotenv import load_dotenv
 
