@@ -14,4 +14,4 @@ expose 8001
 ENV FLASK_APP=wsgi.py
 ENV FLASK_RUN_PORT=8001
 
-CMD cd pricing && flask run -h 0.0.0.0 -p 8001
+CMD cd flask run -h 0.0.0.0 -p 8001
