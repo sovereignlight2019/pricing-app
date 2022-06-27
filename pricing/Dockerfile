@@ -6,7 +6,9 @@ ADD pricing .
 RUN pip install flask && \
     pip install routes && \
     pip install psycopg2-binary && \
-    pip install python-dotenv
+    pip install python-dotenv && \
+    pip install config
+    
 expose 8001
 
 ENV FLASK_APP=wsgi.py
