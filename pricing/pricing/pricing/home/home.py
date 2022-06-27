@@ -11,5 +11,4 @@ home_bp = Blueprint(
 
 @home_bp.route('/', methods=['GET'])
 def home():
-    response.mimetype = "text/plain"
     return "hello world"
