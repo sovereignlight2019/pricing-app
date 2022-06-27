@@ -1,7 +1,7 @@
 FROM ubi8/python-36:latest
 
 MAINTAINER scottryan@sovereignlight.solutions
-ADD .
+ADD * .
 
 RUN pip install flask && \
     pip install routes && \
