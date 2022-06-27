@@ -5,7 +5,8 @@ ADD pricing .
 
 RUN pip install flask && \
     pip install routes && \
-    pip install psycopg2-binary
+    pip install psycopg2-binary && \
+    pip install python-dotenv
 
 expose 8001
 
