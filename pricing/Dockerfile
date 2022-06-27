@@ -1,14 +1,14 @@
 FROM ubi8/python-36:latest
 
 MAINTAINER scottryan@sovereignlight.solutions
-ADD pricing .
+ADD .
 
 RUN pip install flask && \
     pip install routes && \
     pip install psycopg2-binary && \
     pip install python-dotenv && \
     pip install config
-    
+
 expose 8001
 
 ENV FLASK_APP=wsgi.py
