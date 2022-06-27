@@ -6,6 +6,6 @@ from flask import request
 from flask import Flask, render_template, request, redirect, url_for, g
 from app import app
 
-from . import routes
+#from . import routes
 
 @app.route('/')
