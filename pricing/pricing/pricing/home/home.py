@@ -15,7 +15,7 @@ def home():
 
 @home_bp.route('/login', methods=['GET'])
 def home():
-    return "login"
+    return render_template('pricing-login.html')
 
 @home_bp.route('/logout', methods=['GET'])
 def home():
