@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from flask import current_app as app
+from forms import RegistrationForm #imports form from forms.py
 
 
 # Blueprint Configuration
