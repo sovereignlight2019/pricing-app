@@ -8,7 +8,7 @@ RUN pip install flask && \
     pip install psycopg2-binary && \
     pip install python-dotenv && \
     pip install config && \
-    pip instal flask-wtf
+    pip instal flask-wtf && \
 
 expose 8000
 
