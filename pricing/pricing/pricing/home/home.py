@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from flask import current_app as app
 
 
@@ -14,9 +14,9 @@ def home():
     return "Dashboard"
 
 @home_bp.route('/login', methods=['GET'])
-def home():
+def login():
     return render_template('pricing-login.html')
 
 @home_bp.route('/logout', methods=['GET'])
-def home():
+def logout():
     return "Logout"
