@@ -20,3 +20,4 @@ def login():
 @home_bp.route('/logout', methods=['GET'])
 def logout():
     return "Logout"
+
