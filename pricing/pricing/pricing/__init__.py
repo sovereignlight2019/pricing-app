@@ -8,9 +8,10 @@ def init_app():
 
     with app.app_context():
         # Import parts of our application
-        from .home import home
+        from .home import *
 
         # Register Blueprints
         app.register_blueprint(home.home_bp)
+        app.register_blueprint(home.register_bp)
         
         return app

@@ -11,4 +11,12 @@ home_bp = Blueprint(
 
 @home_bp.route('/', methods=['GET'])
 def home():
-    return "hello world"
+    return "Dashboard"
+
+@home_bp.route('/login', methods=['GET'])
+def home():
+    return "login"
+
+@home_bp.route('/logout', methods=['GET'])
+def home():
+    return "Logout"
