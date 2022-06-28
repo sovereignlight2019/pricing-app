@@ -11,7 +11,7 @@ home_bp = Blueprint(
 
 @home_bp.route('/', methods=['GET'])
 def home():
-    return "Dashboard"
+    return render_template("main.html")
 
 @home_bp.route('/login', methods=['GET'])
 def login():
