@@ -10,5 +10,5 @@ register_bp = Blueprint(
 )
 
 @register_bp.route('/register', methods=['GET'])
-def home():
+def register():
     return "Registration Page"
