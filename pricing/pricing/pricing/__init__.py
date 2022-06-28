@@ -13,6 +13,6 @@ def init_app():
 
         # Register Blueprints
         app.register_blueprint(home.home_bp)
-        app.register_blueprint(home.register_bp)
+        app.register_blueprint(register.register_bp)
         
         return app
