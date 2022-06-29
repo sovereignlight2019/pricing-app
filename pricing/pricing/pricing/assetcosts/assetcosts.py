@@ -11,4 +11,4 @@ assetcosts_bp = Blueprint(
 
 @assetcosts_bp.route('/assets', methods=['GET'])
 def assets():
-    return render_template("assetcosts.html")
+    return render_template("assetscosts.html")
