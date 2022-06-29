@@ -9,6 +9,6 @@ assetcosts_bp = Blueprint(
     static_folder='static'
 )
 
-@register_bp.route('/assets', methods=['GET'])
+@assetcosts_bp.route('/assets', methods=['GET'])
 def assets():
     return render_template("assetcosts.html")
