@@ -77,26 +77,29 @@
               <!-- End Table with stripped rows -->
               <p>Hourly Running Costs : £20.07</p>
               <!-- Radar Chart -->
-              <div id="radarChart"></div>
+              <div id="polarAreaChart"></div>
 
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
-                  new ApexCharts(document.querySelector("#radarChart"), {
-                    series: [{
-                      name: 'Fixed Costs',
-                      data: [666.67, 325, 120, 2100],
-                    }],
+                  new ApexCharts(document.querySelector("#polarAreaChart"), {
+                    series: [14, 23, 21, 17, 15, 10, 12, 17, 21],
                     chart: {
+                      type: 'polarArea',
                       height: 350,
-                      type: 'radar',
+                      toolbar: {
+                        show: true
+                      }
                     },
-                    xaxis: {
-                      categories: ['Rent', 'Roland LEF Maintenance', 'Phone Service', 'Staff Wages']
+                    stroke: {
+                      colors: ['#fff']
+                    },
+                    fill: {
+                      opacity: 0.8
                     }
                   }).render();
                 });
               </script>
-              <!-- End Radar Chart -->
+              <!-- End Polar Area Chart -->
 
               <button type="button" class="btn btn-outline-primary">Add Fixed Cost</button>
 
