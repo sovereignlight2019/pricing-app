@@ -11,4 +11,4 @@ assetcosts_bp = Blueprint(
 
 @register_bp.route('/assets', methods=['GET'])
 def assets():
-    return "Registration Page"
+    return render_template("assetcosts.html")
