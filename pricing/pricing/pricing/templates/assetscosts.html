@@ -40,7 +40,7 @@
                     <th scope="col">Vendor / Supplier</th>
                     <th scope="col">Frequency</th>
                     <th scope="col">Cost (£)</th>
-                    <td></td>
+                    <th scope="col">Edit</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -65,10 +65,39 @@
                     <td>120.00</td>
                     <td><button type="button" class="btn btn-warning"><i class="ri ri-file-edit-line"></i></button></td>
                   </tr>
+                  <tr>
+                    <td>Wages</td>
+                    <td>Staff</td>
+                    <td>Monthly</td>
+                    <td>2100</td>
+                    <td><button type="button" class="btn btn-warning"><i class="ri ri-file-edit-line"></i></button></td>
+                  </tr>
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->
-              <p></p>
+              <p>Hourly Running Costs : £20.07</p>
+              <!-- Radar Chart -->
+              <div id="radarChart"></div>
+
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  new ApexCharts(document.querySelector("#radarChart"), {
+                    series: [{
+                      name: 'Fixed Costs',
+                      data: [666.67, 325, 120, 2100],
+                    }],
+                    chart: {
+                      height: 350,
+                      type: 'radar',
+                    },
+                    xaxis: {
+                      categories: ['Rent', 'Roland LEF Maintenance', 'Phone Service', 'Staff Wages']
+                    }
+                  }).render();
+                });
+              </script>
+              <!-- End Radar Chart -->
+
               <button type="button" class="btn btn-outline-primary">Add Fixed Cost</button>
 
           </div>
