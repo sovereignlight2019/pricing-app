@@ -10,8 +10,8 @@ def init_app():
         # Import parts of our application
         from .home import home
         from .register import register
-    
-        Register Blueprints
+
+        # Register Blueprints
         app.register_blueprint(home.home_bp)
         app.register_blueprint(register.register_bp)
         
