@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, url_for, flash, redirect, Blueprint
 from flask import current_app as app
-from forms.py import RegistrationForm #imports form from forms.py
+from forms import RegistrationForm
 
 
 # Blueprint Configuration
@@ -13,7 +13,7 @@ register_bp = Blueprint(
 @register_bp.route("/register", methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
-    #if form.validate_on_submit():
-        #flash(f'Account created for {form.username.data}!', 'success')
-        #return redirect(url_for('home'))
+    if form.validate_on_submit():
+        flash(f'Account created for {form.username.data}!', 'success')
+        return redirect(url_for('home'))
     return render_template('register.html', title='Register', form=form)
