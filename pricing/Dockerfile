@@ -10,7 +10,7 @@ RUN pip install flask && \
     pip install config && \
     pip install flask-wtf 
 
-expose 8000
+expose 8001
 
 ENV FLASK_APP=wsgi.py
 ENV FLASK_RUN_PORT=8000
