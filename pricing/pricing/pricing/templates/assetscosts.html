@@ -45,34 +45,14 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% for item in results %}
                   <tr>
-                    <td>Rent</td>
-                    <td>Agency</td>
-                    <td>Monthly</td>
-                    <td>666.67</td>
+                    <td>{{ item.0 }}</td>
+                    <td>{{ item.1 }}</td>
+                    <td>{{ item.2 }}</td>
                     <td><button type="button" class="btn btn-warning"><i class="ri ri-file-edit-line"></i></button></td>
                   </tr>
-                  <tr>
-                    <td>Roland LEF Maintenance</td>
-                    <td>Signmaster</td>
-                    <td>Monthly</td>
-                    <td>325.00</td>
-                    <td><button type="button" class="btn btn-warning"><i class="ri ri-file-edit-line"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td>Telephone Service</td>
-                    <td>Global Reach Digital</td>
-                    <td>Monthly</td>
-                    <td>120.00</td>
-                    <td><button type="button" class="btn btn-warning"><i class="ri ri-file-edit-line"></i></button></td>
-                  </tr>
-                  <tr>
-                    <td>Wages</td>
-                    <td>Staff</td>
-                    <td>Monthly</td>
-                    <td>2100</td>
-                    <td><button type="button" class="btn btn-warning"><i class="ri ri-file-edit-line"></i></button></td>
-                  </tr>
+                  {% endfor %}
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->

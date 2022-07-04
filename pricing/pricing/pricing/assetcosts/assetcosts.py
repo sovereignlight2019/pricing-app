@@ -16,7 +16,7 @@ def assets():
         db = "dbname=" . dbName . " user=sprocket password=Sprocket123 host=localhost"
         conn = psycopg2.connect(db)
         cur = conn.cursor()
-        cur.execute("""SELECT * FROM overheads;""")
+        cur.execute("""SELECT * FROM running_costs;""")
         rows = cur.fetchall()
         cur.close()
         conn.close()
