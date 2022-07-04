@@ -9,6 +9,30 @@ assetcosts_bp = Blueprint(
     static_folder='static'
 )
 
-@assetcosts_bp.route('/assets', methods=['GET'])
+@assetcosts_bp.route('/assets', methods=['GET', 'POST'])
 def assets():
-    return render_template("assetscosts.html")
+    if request.method == 'GET':
+        dbName = "sprocket"
+        db = "dbname=" . dbName . " user=sprocket password=Sprocket123 host=localhost"
+        conn = psycopg2.connect(db)
+        cur = conn.cursor()
+        cur.execute("""SELECT * FROM overheads;""")
+        rows = cur.fetchall()
+        cur.close()
+        conn.close()
+        my_list = []
+        for row in rows:
+            my_list.append(row[1])
+    return render_template("assetscosts.html", results=my_list)
+
+@assetcosts_bp.route('/assets/add', methods=['GET', 'POST'])
+def add_asset():
+    if request.method == 'GET':
+        # display form
+        return render_template("addasset.html", results=my_list)
+
+    else
+        # submit form
+        # add details to DB and return to assets page
+        return render_template("assetscosts.html", results=my_list)
+
