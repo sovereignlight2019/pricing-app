@@ -26,11 +26,11 @@ def assets():
             my_list.append(row)
     return render_template("assetscosts.html", results=my_list)
 
-@assetcosts_bp.route('/assets/add', methods=['GET', 'POST'])
+@assetcosts_bp.route('/assets/addcost', methods=['GET', 'POST'])
 def add_asset():
     if request.method == 'GET':
         # display form
-        return render_template("addasset.html")
+        return render_template("addcost.html")
 
     else:
         # submit form
