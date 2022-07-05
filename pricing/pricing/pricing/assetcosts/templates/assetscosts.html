@@ -18,9 +18,66 @@
 
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Asset Lists</h5>
-            <p>You do not have any assets</p>
-            <button type="button" class="btn btn-outline-primary">Add Asset</button>
+            <h5 class="card-title">Asset List</h5>
+
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+                <thead>
+                  <tr>
+                    <th scope="col">Description</th>
+                    <th scope="col">Make</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Months to depreciate</th>
+                    <th scope="col">Monthly depreciation</th>
+                    <th scope="col">Edit</th>
+                    <th</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in assets %}
+                  <tr>
+                    <td>{{ item.1 }}</td>
+                    <td>{{ item.2 }}</td>
+                    <td>{{ item.3 }}</td>
+                    <td>{{ item.4 }}</td>
+                    <td>{{ item.5 }}</td>
+                    <td>{{ '%0.2f'|format(item.6) }}</td>
+                    <td><a href="/assets/editasset/{{ item.0 }}"><button type="button" class="btn btn-warning"><i class="ri ri-file-edit-line"></i></button></a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+
+            <a href="/assets/addasset" class="btn btn-outline-primary">Add Asset</a>
+            <p></p>
+
+              <!-- Radar Chart -->
+              <div id="polarAreaChart"></div>
+
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  new ApexCharts(document.querySelector("#polarAreaChart"), {
+                    series: [ {% for item in assets %} {{ item.6 }} {% if not item.last %},{% endif %} {% endfor %} ],
+                    chart: {
+                      type: 'polarArea',
+                      height: 350,
+                      toolbar: {
+                        show: true
+                      }
+                    },
+                    labels: [ {% for item in assets %} '{{ item.1 }}' {% if not item.last %},{% endif %} {% endfor %} ],
+                    stroke: {
+                      colors: ['#fff']
+                    },
+                    fill: {
+                      opacity: 0.8
+                    }
+                  }).render();
+                });
+              </script>
+              <!-- End Polar Area Chart -->
           </div>
         </div>
 
@@ -31,7 +88,11 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Fixed Costs (Overheads)</h5>
-            <p></p>
+            {% if cost.0 %}
+            <h2>Hourly Running Costs : £{{'%0.2f'|format(cost.0/220|float) }}</h2>
+            {% else %}
+            <h2>Hourly Running Costs : £0</h2>
+            {% endif %}
             <!-- Table with stripped rows -->
             <table class="table datatable">
                 <thead>
@@ -46,26 +107,26 @@
                 <tbody>
                   {% for item in results %}
                   <tr>
-                    <td>{{ item.1 }}</td>
                     <td>{{ item.2 }}</td>
                     <td>{{ item.3 }}</td>
                     <td>{{ item.4 }}</td>
+                    <td>{{ item.5 }}</td>
                     <td><button type="button" class="btn btn-warning"><i class="ri ri-file-edit-line"></i></button></td>
                   </tr>
                   {% endfor %}
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->
-              <h2>Hourly Running Costs : £{{ '%0.2f'|format(cost.0/220|float) }}</h2>
+              <p></p>
               <a href="/assets/addcost" class="btn btn-outline-primary">Add Cost</a>
               <p></p>
               <!-- Radar Chart -->
-              <div id="polarAreaChart"></div>
+              <div id="polarAreaChart1"></div>
 
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
-                  new ApexCharts(document.querySelector("#polarAreaChart"), {
-                    series: [ {% for item in results %} {{ item.4 }} {% if not item.last %},{% endif %} {% endfor %} ],
+                  new ApexCharts(document.querySelector("#polarAreaChart1"), {
+                    series: [ {% for item in results %} {{ item.5 }} {% if not item.last %},{% endif %} {% endfor %} ],
                     chart: {
                       type: 'polarArea',
                       height: 350,
@@ -73,7 +134,7 @@
                         show: true
                       }
                     },
-                    labels: [ {% for item in results %} '{{ item.1 }}' {% if not item.last %},{% endif %} {% endfor %} ],
+                    labels: [ {% for item in results %} '{{ item.2 }}' {% if not item.last %},{% endif %} {% endfor %} ],
                     stroke: {
                       colors: ['#fff']
                     },
