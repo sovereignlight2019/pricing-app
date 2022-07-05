@@ -6,9 +6,8 @@
     <h1>Asset & Cost Details</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item">Pages</li>
-        <li class="breadcrumb-item active">Blank</li>
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/assets">Assets & Costs</a></li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
@@ -58,7 +57,7 @@
               </table>
               <!-- End Table with stripped rows -->
               <h2>Hourly Running Costs : £{{ '%0.2f'|format(cost.0/220|float) }}</h2>
-              <button type="button" class="btn btn-outline-primary">Add Fixed Cost</button>
+              <a href="/assets/addcost" class="btn btn-outline-primary">Add Cost</a>
               <p></p>
               <!-- Radar Chart -->
               <div id="polarAreaChart"></div>
