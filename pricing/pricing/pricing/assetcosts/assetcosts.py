@@ -30,10 +30,10 @@ def assets():
 def add_asset():
     if request.method == 'GET':
         # display form
-        return render_template("addasset.html", results=my_list)
+        return render_template("addasset.html")
 
     else:
         # submit form
         # add details to DB and return to assets page
-        return render_template("assetscosts.html", results=my_list)
+        return render_template("assetscosts.html")
 
