@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from flask import current_app as app
+import psycopg2
 
 
 # Blueprint Configuration
@@ -13,7 +14,7 @@ assetcosts_bp = Blueprint(
 def assets():
     if request.method == 'GET':
         dbName = "sprocket"
-        db = "dbname=" . dbName . " user=sprocket password=Sprocket123 host=localhost"
+        db = "dbname=" + dbName + " user=sprocket password=Sprocket123 host=localhost"
         conn = psycopg2.connect(db)
         cur = conn.cursor()
         cur.execute("""SELECT * FROM running_costs;""")
@@ -22,7 +23,7 @@ def assets():
         conn.close()
         my_list = []
         for row in rows:
-            my_list.append(row[1])
+            my_list.append(row)
     return render_template("assetscosts.html", results=my_list)
 
 @assetcosts_bp.route('/assets/add', methods=['GET', 'POST'])
@@ -31,7 +32,7 @@ def add_asset():
         # display form
         return render_template("addasset.html", results=my_list)
 
-    else
+    else:
         # submit form
         # add details to DB and return to assets page
         return render_template("assetscosts.html", results=my_list)
