@@ -57,7 +57,7 @@
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->
-              <h2>Hourly Running Costs : £20.07</h2>
+              <h2>Hourly Running Costs : £{{ '%0.2f'|format(cost.0/220|float) }}</h2>
               <button type="button" class="btn btn-outline-primary">Add Fixed Cost</button>
               <p></p>
               <!-- Radar Chart -->
