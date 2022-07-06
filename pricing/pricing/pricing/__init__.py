@@ -11,10 +11,12 @@ def init_app():
         from .home import home
         from .register import register
         from .assetcosts import assetcosts
+        from .calculator import calculator
 
         # Register Blueprints
         app.register_blueprint(home.home_bp)
         app.register_blueprint(register.register_bp)
         app.register_blueprint(assetcosts.assetcosts_bp)
+        app.register_blueprint(calculator.calculator_bp)
         
         return app

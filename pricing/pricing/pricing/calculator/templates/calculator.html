@@ -1,0 +1,68 @@
+{% extends "left_sidebar.html" %}
+{% block main_container %}
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Pricing Calculator</h1>
+    <nav>
+      <ol class="breadcrumb">
+       <li class="breadcrumb-item"><a href="/">Home</a></li>
+       <li class="breadcrumb-item"><a href="/">Tools</a></li>
+       <li class="breadcrumb-item"><a href="/calculator">Pricing Calculator</a></li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row">
+
+      <div class="col-lg-6">
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Pricing Calulator</h5>
+            <p>The calculator determines the total cost of a job based on overheads, equipment costing, material costing and labour</p>
+                <!-- Multi Columns Form -->
+              <form class="row g-3" method="POST" action="/assets/addasset">
+                <div class="col-md-12">
+                  <label for="inputAssetDesc" class="form-label">Description</label>
+                  <input type="text" class="form-control" id="inputAssetDesc" name="inputAssetDesc">
+                </div>
+                <div class="col-md-12">
+                    <label for="inputAssetMake" class="form-label">Make</label>
+                    <input type="text" class="form-control" id="inputAssetMake" name="inputAssetMake">
+                </div>
+                <div class="col-md-12">
+                    <label for="inputAssetModel" class="form-label">Model</label>
+                    <input type="text" class="form-control" id="inputAssetModel" name="inputAssetModel">
+                </div>
+                <div class="col-md-4">
+                  <label for="inputAssetMonths" class="form-label">Depreciation Months</label>
+                  <select class="form-select" id="inputAssetMonths" name="inputAssetMonths">
+                      <option selected>Choose...</option>
+                      <option value="6">Six Months</option>
+                      <option value="12">One Year</option>
+                      <option value="24">Two Years</option>
+                      <option value="36">Three Years</option>
+                      <option value="48">Four Years</option>
+                      <option value="60">Five Years</option>
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <label for="inputAssetCost" class="form-label">Cost</label>
+                  <input type="text" class="form-control" id="inputAssetCost" name="inputAssetCost">
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+              </form><!-- End Multi Columns Form -->
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </section>
+  
+  </main><!-- End #main -->
+  {% endblock %}
