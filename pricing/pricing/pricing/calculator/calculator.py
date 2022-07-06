@@ -13,4 +13,15 @@ calculator_bp = Blueprint(
 
 @calculator_bp.route('/calculator', methods=['GET'])
 def calculator():
-    return render_template("calculator.html")
+
+     if request.method == 'GET':
+        # Display form
+        db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
+        conn = psycopg2.connect(db)
+        cur = conn.cursor()
+
+        cur.execute("""SELECT * FROM asset_costs;""")
+        asset_rows = cur.fetchall()
+        cur.close
+        conn.close()
+        return render_template("calculator.html", assets=asset_rows)
