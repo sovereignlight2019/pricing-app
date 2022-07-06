@@ -223,9 +223,6 @@ def edit_cost(cost_id):
        itemFrequency = request.form['inputFrequency']
        itemCost = request.form['inputCost']
 
-       # Manipulate the depreciation cost
-       monthlyDepreciation = float(assetCost) / int(assetMonths)
-
        # Update the row in the DB
        cur.execute("""UPDATE running_costs set item=%s,description=%s,supplier=%s,pmt_frequency=%s,cost=%s WHERE id=%s RETURNING *;""", (itemName,itemName,itemVendor,itemFrequency,itemCost,cost_id))
        conn.commit
