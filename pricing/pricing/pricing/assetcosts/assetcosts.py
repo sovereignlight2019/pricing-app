@@ -116,30 +116,60 @@ def add_asset():
 
 @assetcosts_bp.route('/assets/editasset/<asset_id>', methods=['GET', 'POST'])
 def edit_asset(asset_id):
+
+    # This section determines that it is a request to UPDATE the asset
+    # It will return the form with populated values, based on a search from the <assed_id>
+    #
+
     if request.method == 'GET':
        # Display form
-    
        db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
        conn = psycopg2.connect(db)
        cur = conn.cursor()
-       cur.execute("""SELECT * FROM asset_costs where id = %s;""", (asset_id))
-       asset_rows = cur.fetchall()
+
+       cur.execute("""SELECT * FROM asset_costs WHERE id = %s;""", (asset_id))
+       asset_row = cur.fetchone()
        cur.close
        conn.close()
-       return render_template("editasset.html", assets=asset_rows)
+       return render_template("editasset.html", assets=asset_row)
 
     else:
-       # submit form
+
+    # This section is processed when the form is submitted (POST)
+    # It gets the values from the form and updates the data base
+    # It then also does a couple of searches for cossts and assets
+    # and sends the data to the main asset/costs dashboard template
+
+       # form submitted
+       # Connect to DB
        db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
        conn = psycopg2.connect(db)
        cur = conn.cursor()
 
        # update data
 
+       monthly_cost = []
+
+       # Get Form Data
+       assetDesc = request.form['inputAssetDesc']
+       assetMake = request.form['inputAssetMake']
+       assetModel = request.form['inputAssetModel']
+       assetCost = request.form['inputAssetCost']
+       assetMonths = request.form['inputAssetMonths']
+
+       # Manipulate the depreciation cost
+       monthlyDepreciation = float(assetCost) / int(assetMonths)
+
+       # Update the row in the DB
+       cur.execute("""UPDATE asset_costs set item=%s,make=%s,model=%s,cost=%s,depreciation_months=%s,monthly_depreciation=%s WHERE id=%s RETURNING *;""", (assetDesc,assetMake,assetModel,assetCost,assetMonths,monthlyDepreciation,asset_id))
+       conn.commit
+
        cur.execute("""SELECT SUM (cost) AS total FROM running_costs;""")
        cost = cur.fetchall()
+
        cur.execute("""SELECT * FROM running_costs;""")
        rows = cur.fetchall()
+
        cur.execute("""SELECT * FROM asset_costs;""")
        asset_rows = cur.fetchall()
 
@@ -149,4 +179,4 @@ def edit_asset(asset_id):
        for row in cost:
             monthly_cost.append(row[0])
 
-       return render_template("assetscosts.html", results=my_list, cost=monthly_cost, assets=asset_rows)
+       return render_template("assetscosts.html", results=rows, cost=monthly_cost, assets=asset_rows)
