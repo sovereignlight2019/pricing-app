@@ -11,10 +11,6 @@ assetcosts_bp = Blueprint(
 )
 
 
-# Connect to DB
-db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
-conn = psycopg2.connect(db)
-cur = conn.cursor()
 
 @assetcosts_bp.route('/assets', methods=['GET', 'POST'])
 def assets():
