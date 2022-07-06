@@ -198,7 +198,7 @@ def edit_cost(cost_id):
        asset_row = cur.fetchone()
        cur.close
        conn.close()
-       return render_template("editcost.html", assets=asset_row)
+       return render_template("editcost.html", results=asset_row)
 
     else:
 
