@@ -1,4 +1,4 @@
-rom flask import Blueprint, render_template, request, redirect, url_for, session
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from flask import current_app as app
 import psycopg2, string, os, math, random
 
