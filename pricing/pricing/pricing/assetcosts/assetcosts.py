@@ -180,3 +180,69 @@ def edit_asset(asset_id):
             monthly_cost.append(row[0])
 
        return render_template("assetscosts.html", results=rows, cost=monthly_cost, assets=asset_rows)
+
+@assetcosts_bp.route('/assets/editcost/<cost_id>', methods=['GET', 'POST'])
+def edit_cost(cost_id):
+
+    # This section determines that it is a request to UPDATE the cost
+    # It will return the form with populated values, based on a search from the <cost_id>
+    #
+
+    if request.method == 'GET':
+       # Display form
+       db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
+       conn = psycopg2.connect(db)
+       cur = conn.cursor()
+
+       cur.execute("""SELECT * FROM running_costs WHERE id = %s;""", (cost_id))
+       asset_row = cur.fetchone()
+       cur.close
+       conn.close()
+       return render_template("editcost.html", assets=asset_row)
+
+    else:
+
+    # This section is processed when the form is submitted (POST)
+    # It gets the values from the form and updates the data base
+    # It then also does a couple of searches for costs and assets
+    # and sends the data to the main asset/costs dashboard template
+
+       # form submitted
+       # Connect to DB
+       db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
+       conn = psycopg2.connect(db)
+       cur = conn.cursor()
+
+       # update data
+
+       monthly_cost = []
+
+       # Get Form Data
+        itemName = request.form['inputCostItem']
+        itemVendor = request.form['inputVendor']
+        itemFrequency = request.form['inputFrequency']
+        itemCost = request.form['inputCost']
+
+       # Manipulate the depreciation cost
+       monthlyDepreciation = float(assetCost) / int(assetMonths)
+
+       # Update the row in the DB
+       cur.execute("""UPDATE running_costs set item=%s,description=%s,supplier=%s,pmt_frequency=%s,cost=%s WHERE id=%s RETURNING *;""", (itemName,itemName,itemVendor,itemFrequency,itemCost,cost_id))
+       conn.commit
+
+       cur.execute("""SELECT SUM (cost) AS total FROM running_costs;""")
+       cost = cur.fetchall()
+
+       cur.execute("""SELECT * FROM running_costs;""")
+       rows = cur.fetchall()
+
+       cur.execute("""SELECT * FROM asset_costs;""")
+       asset_rows = cur.fetchall()
+
+       cur.close
+       conn.close()
+
+       for row in cost:
+            monthly_cost.append(row[0])
+
+       return render_template("assetscosts.html", results=rows, cost=monthly_cost, assets=asset_rows)
