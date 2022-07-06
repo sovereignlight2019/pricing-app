@@ -224,22 +224,10 @@ def edit_cost(cost_id):
        itemCost = request.form['inputCost']
 
        # Update the row in the DB
-       cur.execute("""UPDATE running_costs set item=%s,description=%s,supplier=%s,pmt_frequency=%s,cost=%s WHERE id=%s RETURNING *;""", (itemName,itemName,itemVendor,itemFrequency,itemCost,cost_id))
+       cur.execute("""UPDATE running_costs SET item=%s,description=%s,supplier=%s,pmt_frequency=%s,cost=%s WHERE id=%s RETURNING *;""", (itemName,itemName,itemVendor,itemFrequency,itemCost,cost_id))
        conn.commit
-
-       cur.execute("""SELECT SUM (cost) AS total FROM running_costs;""")
-       cost = cur.fetchall()
-
-       cur.execute("""SELECT * FROM running_costs;""")
-       rows = cur.fetchall()
-
-       cur.execute("""SELECT * FROM asset_costs;""")
-       asset_rows = cur.fetchall()
-
        cur.close
        conn.close()
 
-       for row in cost:
-            monthly_cost.append(row[0])
-
-       return render_template("assetscosts.html", results=rows, cost=monthly_cost, assets=asset_rows)
+       return redirect(url_for('assets'))
+       #return render_template("assetscosts.html", results=rows, cost=monthly_cost, assets=asset_rows)
