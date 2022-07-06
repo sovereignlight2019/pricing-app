@@ -218,10 +218,10 @@ def edit_cost(cost_id):
        monthly_cost = []
 
        # Get Form Data
-        itemName = request.form['inputCostItem']
-        itemVendor = request.form['inputVendor']
-        itemFrequency = request.form['inputFrequency']
-        itemCost = request.form['inputCost']
+       itemName = request.form['inputCostItem']
+       itemVendor = request.form['inputVendor']
+       itemFrequency = request.form['inputFrequency']
+       itemCost = request.form['inputCost']
 
        # Manipulate the depreciation cost
        monthlyDepreciation = float(assetCost) / int(assetMonths)
