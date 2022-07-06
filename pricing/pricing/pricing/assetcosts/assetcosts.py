@@ -209,8 +209,6 @@ def edit_cost(cost_id):
        itemCost = "{:.2f}".format(float(request.form['inputCost']))
 
        # Update the row in the DB
-       #return (itemName + " " + itemVendor + " " + itemFrequency + " " + itemCost + " " + cost_id)
-
        conn = psycopg2.connect(db)
        cur = conn.cursor()
        cur.execute(
