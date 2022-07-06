@@ -10,6 +10,12 @@ assetcosts_bp = Blueprint(
     static_folder='static'
 )
 
+       # form submitted
+       # Connect to DB
+       db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
+       conn = psycopg2.connect(db)
+       cur = conn.cursor()
+
 @assetcosts_bp.route('/assets', methods=['GET', 'POST'])
 def assets():
     if request.method == 'GET':
@@ -164,22 +170,10 @@ def edit_asset(asset_id):
        cur.execute("""UPDATE asset_costs set item=%s,make=%s,model=%s,cost=%s,depreciation_months=%s,monthly_depreciation=%s WHERE id=%s RETURNING *;""", (assetDesc,assetMake,assetModel,assetCost,assetMonths,monthlyDepreciation,asset_id))
        conn.commit
 
-       cur.execute("""SELECT SUM (cost) AS total FROM running_costs;""")
-       cost = cur.fetchall()
-
-       cur.execute("""SELECT * FROM running_costs;""")
-       rows = cur.fetchall()
-
-       cur.execute("""SELECT * FROM asset_costs;""")
-       asset_rows = cur.fetchall()
-
        cur.close
        conn.close()
 
-       for row in cost:
-            monthly_cost.append(row[0])
-
-       return render_template("assetscosts.html", results=rows, cost=monthly_cost, assets=asset_rows)
+    return redirect(url_for('assets'))
 
 @assetcosts_bp.route('/assets/editcost/<cost_id>', methods=['GET', 'POST'])
 def edit_cost(cost_id):
@@ -207,11 +201,7 @@ def edit_cost(cost_id):
     # It then also does a couple of searches for costs and assets
     # and sends the data to the main asset/costs dashboard template
 
-       # form submitted
-       # Connect to DB
-       db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
-       conn = psycopg2.connect(db)
-       cur = conn.cursor()
+
 
        # update data
 
@@ -230,4 +220,3 @@ def edit_cost(cost_id):
        conn.close()
 
        return redirect(url_for('assets'))
-       #return render_template("assetscosts.html", results=rows, cost=monthly_cost, assets=asset_rows)
