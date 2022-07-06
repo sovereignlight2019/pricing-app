@@ -8,7 +8,7 @@
       <ol class="breadcrumb">
        <li class="breadcrumb-item"><a href="/">Home</a></li>
        <li class="breadcrumb-item"><a href="/assets">Assets & Costs</a></li>
-       <li class="breadcrumb-item"><a href="/assets/editcost/{{ assets.0 }}">Edit Cost</a></li>
+       <li class="breadcrumb-item"><a href="/assets/editcost/{{ results.0 }}">Edit Cost</a></li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
@@ -23,14 +23,14 @@
             <h5 class="card-title">Edit Cost</h5>
             <p></p>
                 <!-- Multi Columns Form -->
-              <form class="row g-3" method="POST" action="/assets/editcost/{{ assets.0 }}">
+              <form class="row g-3" method="POST" action="/assets/editcost/{{ results.0 }}">
                 <div class="col-md-12">
                   <label for="inputCostItem" class="form-label">Desciption</label>
-                  <input type="text" class="form-control" id="inputCostItem" name="inputCostItem" value="{{ assets.2 }}">
+                  <input type="text" class="form-control" id="inputCostItem" name="inputCostItem" value="{{ results.2 }}">
                 </div>
                 <div class="col-md-12">
                     <label for="inputVender" class="form-label">Supplier</label>
-                    <input type="text" class="form-control" id="inputVendor" name="inputVendor" value="{{ assets.3 }}">
+                    <input type="text" class="form-control" id="inputVendor" name="inputVendor" value="{{ results.3 }}">
                 </div>
                 <div class="col-md-4">
                     <label for="inputFrequency" class="form-label">Payment Frequency</label>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-md-2">
                   <label for="inputCost" class="form-label">Cost</label>
-                  <input type="text" class="form-control" id="inputCost" name="inputCost" value="{{ assets.5 }}">
+                  <input type="text" class="form-control" id="inputCost" name="inputCost" value="{{ results.5 }}">
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Submit</button>
