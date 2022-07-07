@@ -28,7 +28,7 @@ def calculator_uvprint():
         conn.close()
         return render_template("uvprint.html", media=media_rows,assets=asset_rows)
 
-@calculator_bp.route('/calculator/vinyl', methods=['GET'])
+@calculator_bp.route('/calculator/vinyl', methods=['GET', 'POST'])
 def calculator_vinyl():
     db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
     conn = psycopg2.connect(db)
@@ -67,7 +67,29 @@ def calculator_vinyl():
         media_cost = media_details[1]
 
         # Use Job Width to determine job density
-        density = int(roll_width / job_width)
+        width_density = int(roll_width / job_width)
+        height_density = int(roll_width / job_height)
+
+        # Check best density
+        density = {'height': int(roll_width / job_height), 'width': int(roll_width / job_width)}
+        highest_density = max(density, key=density.get)
+
+        if highest_density is 'width':
+            media_length = job_height
+            number_rows = quantity / int(roll_width / job_width)
+            total_media_usage = math.ceil(job_height * number_rows * 1.1)
+
+
+        else:
+            media_length = job_width
+            number_of_rows = quantity / int(roll_width / job_height)
+            total_media_usage = math.ceil(job_width * number_rows * 1.1)
+
+        total_media_cost = (total_media_usage / 1000) * media_cost
+
+        return(total_media_cost
+
+        
 
         # Get Media Width and Calculate Job Density
 
