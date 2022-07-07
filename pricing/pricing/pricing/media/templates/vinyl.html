@@ -35,19 +35,24 @@
                 <!-- Multi Columns Form -->
               <form class="row g-3" method="POST" action="/assets/addcost">
                 <div class="col-md-12">
-                  <label for="inputCostItem" class="form-label">Cost Item</label>
+                  <label for="inputCostItem" class="form-label">Vendor</label>
                   <input type="text" class="form-control" id="inputCostItem" name="inputCostItem">
                 </div>
                 <div class="col-md-12">
-                    <label for="inputVender" class="form-label">Vendor / Supplier</label>
+                    <label for="inputCostItem" class="form-label">Product</label>
+                    <input type="text" class="form-control" id="inputCostItem" name="inputCostItem">
+                  </div>
+                <div class="col-md-12">
+                    <label for="inputVender" class="form-label">Supplier</label>
                     <input type="text" class="form-control" id="inputVendor" name="inputVendor">
                 </div>
-                <div class="col-md-4">
-                    <label for="inputFrequency" class="form-label">Payment Frequency</label>
-                    <select id="inputFrequency" class="form-select" name="inputFrequency">
-                      <option selected>Choose...</option>
-                      <option value="Monthly">Monthly</option>
-                    </select>
+                <div class="col-md-2">
+                    <label for="inputCost" class="form-label">Roll Width</label>
+                    <input type="text" class="form-control" id="inputCost" name="inputCost">
+                </div>
+                <div class="col-md-2">
+                    <label for="inputCost" class="form-label">Roll Length</label>
+                    <input type="text" class="form-control" id="inputCost" name="inputCost">
                 </div>
                 <div class="col-md-2">
                   <label for="inputCost" class="form-label">Cost</label>
