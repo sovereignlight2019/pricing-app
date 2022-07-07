@@ -11,7 +11,7 @@ calculator_bp = Blueprint(
     static_folder='static'
 )
 
-@calculator_bp.route('/calculator/vinyl', methods=['GET'])
+@calculator_bp.route('/calculator/uvprint', methods=['GET'])
 def calculator():
 
      if request.method == 'GET':
@@ -24,4 +24,4 @@ def calculator():
         asset_rows = cur.fetchall()
         cur.close
         conn.close()
-        return render_template("calculator.html", assets=asset_rows)
+        return render_template("uvprint.html", assets=asset_rows)
