@@ -22,7 +22,7 @@ def vinyl():
     cur = conn.cursor()
     
     # display form
-    cur.execute("""SELECT * FROM running_costs;""")
+    cur.execute("""SELECT * FROM media;""")
     rows = cur.fetchall()
     conn.commit()
     cur.close
@@ -49,7 +49,7 @@ def vinyl_add():
         # submit form
 
         vendor= request.form['inputVendor']
-        product = request.form['inputproduct']
+        product = request.form['inputProduct']
         supplier = request.form['inputSupplier']
         rollwidth = request.form['inputRollWidth']
         rolllength = request.form['inputRollLength']
@@ -83,7 +83,7 @@ def vinyl_edit(id):
     else:
         # Get Form data
         vendor= request.form['inputVendor']
-        product = request.form['inputproduct']
+        product = request.form['inputProduct']
         supplier = request.form['inputSupplier']
         rollwidth = request.form['inputRollWidth']
         rolllength = request.form['inputRollLength']
@@ -94,7 +94,7 @@ def vinyl_edit(id):
         conn = psycopg2.connect(db)
         cur = conn.cursor()
         cur.execute(
-           "UPDATE running_costs SET vendor=%s, product=%s, supplier=%s, roll_width=%s, roll_length, cost=%s"        
+           "UPDATE media SET vendor=%s, product=%s, supplier=%s, roll_width=%s, roll_length=%s, cost=%s"        
            " WHERE id=%s",
            (vendor,product,supplier,rollwidth,rolllength,cost,int(id),));
         updated_rows = cur.rowcount

@@ -59,16 +59,20 @@
                     <p></p>
                    <label class="col-sm-2 col-form-label">Materials</label>
                    <div class="col-sm-10">
-                     <div class="input-group mb-3">
-                       <input type="text" class="form-control" placeholder="Ink Usage" aria-label="Ink Usage" aria-describedby="basic-addon2">
-                       <span class="input-group-text" id="basic-addon2">ml</span>
-                     </div>
-                   <select class="form-select" id="inputAsset" name="inputAsset">
-                      <option selected>Select Media</option>
-                      {% for item in assets %}
-                      <option value="{{ item.0 }}">{{ item.1 }}</option>
-                      {% endfor %}
-                   </select>
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" placeholder="Ink Usage" aria-label="Ink Usage" aria-describedby="basic-addon2">
+                      <span class="input-group-text" id="basic-addon2">ml</span>
+                    </div>
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" placeholder="Print Time" aria-label="Print Time" aria-describedby="basic-addon2">
+                      <span class="input-group-text" id="basic-addon2">seconds</span>
+                    </div>
+                  <select class="form-select" id="inputAsset" name="inputAsset">
+                     <option selected>Select Media</option>
+                     {% for item in media %}
+                     <option value="{{ item.0 }}">{{ item.4 }}</option>
+                     {% endfor %}
+                  </select>
                    </div>
                   </div>
 
