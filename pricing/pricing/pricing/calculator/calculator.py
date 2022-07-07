@@ -20,7 +20,7 @@ def calculator():
         conn = psycopg2.connect(db)
         cur = conn.cursor()
 
-        cur.execute("""SELECT * FROM asset_costs;""")
+        cur.execute("""SELECT * FROM media;""")
         asset_rows = cur.fetchall()
         cur.close
         conn.close()
