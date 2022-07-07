@@ -15,7 +15,7 @@
 
   <section class="section">
     <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-8">
 
         <div class="card">
           <div class="card-body">
@@ -37,13 +37,13 @@
                 <tbody>
                   {% for item in list %}
                   <tr>
-                    <td>{{ item.1 }}</td>
-                    <td>{{ item.2 }}</td>
                     <td>{{ item.3 }}</td>
                     <td>{{ item.4 }}</td>
                     <td>{{ item.5 }}</td>
-                    <td>{{ '%0.2f'|format(item.9) }}</td>
-                    <td><a href="/media/vinyl/add/{{ item.0 }}"><button type="button" class="btn btn-warning"><i class="ri ri-file-edit-line"></i></button></a></td>
+                    <td>{{ item.6 }}</td>
+                    <td>{{ item.7 }}</td>
+                    <td>{{ '%0.2f'|format(item.11) }}</td>
+                    <td><a href="/media/vinyl/edit/{{ item.0 }}"><button type="button" class="btn btn-warning"><i class="ri ri-file-edit-line"></i></button></a></td>
                   </tr>
                   {% endfor %}
                 </tbody>
@@ -54,7 +54,7 @@
 
       </div>
 
-      <div class="col-lg-6">
+      <div class="col-lg-4">
 
         <div class="card">
           <div class="card-body">
@@ -62,27 +62,27 @@
             <p></p>
                 <!-- Multi Columns Form -->
               <form class="row g-3" method="POST" action="/media/vinyl/add">
-                <div class="col-md-12">
+                <div class="col-md-10">
                   <label for="inputVendor" class="form-label">Vendor</label>
                   <input type="text" class="form-control" id="inputVendor" name="inputVendor">
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-10">
                     <label for="inputProduct class="form-label">Product</label>
                     <input type="text" class="form-control" id="inputProduct" name="inputProduct">
                   </div>
-                <div class="col-md-12">
+                <div class="col-md-10">
                     <label for="inputSupplier" class="form-label">Supplier</label>
                     <input type="text" class="form-control" id="inputSupplier" name="inputSupplier">
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <label for="inputRollWidth" class="form-label">Roll Width</label>
                     <input type="text" class="form-control" id="inputRollWidth" name="inputRollWidth">
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <label for="inputRollLength" class="form-label">Roll Length</label>
                     <input type="text" class="form-control" id="inputRollLength" name="inputRollLength">
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <label for="inputCost" class="form-label">Cost</label>
                   <input type="text" class="form-control" id="inputCost" name="inputCost">
                 </div>

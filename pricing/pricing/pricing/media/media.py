@@ -49,7 +49,7 @@ def vinyl_add():
         # submit form
 
         vendor= request.form['inputVendor']
-        product = request.form['inputVendor']
+        product = request.form['inputproduct']
         supplier = request.form['inputSupplier']
         rollwidth = request.form['inputRollWidth']
         rolllength = request.form['inputRollLength']
