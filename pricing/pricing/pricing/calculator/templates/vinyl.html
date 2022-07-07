@@ -20,10 +20,10 @@
 
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Pricing Calulator</h5>
+            <h5 class="card-title">Vinyl Job Calculator</h5>
             <p>The calculator determines the total cost of a job based on overheads, equipment costing, material costing and labour</p>
                 <!-- Multi Columns Form -->
-              <form class="row g-3" method="POST" action="/calculator">
+              <form class="row g-3" method="POST" action="/calculator/vinyl">
                 <div class="col-md-12">
                   <label for="inputAsset" class="form-label">Select Printer</label>
                   <select class="form-select" id="inputAsset" name="inputAsset">
@@ -35,27 +35,25 @@
                 </div>
 
                   <div class="row mb-5">
-                    <p></p>
-                   <label class="col-sm-2 col-form-label">Materials</label>
-                   <div class="col-sm-10">
-                    <div class="input-group mb-3">
-                      <span class="input-group-text" id="basic-addon1">£</span>
-                      <input type="text" class="form-control" placeholder="Ink Cost" aria-label="Ink Cost" aria-describedby="basic-addon2">
-                      <input type="text" class="form-control" placeholder="Ink Usage" aria-label="Ink Usage" aria-describedby="basic-addon2">
-                      <span class="input-group-text" id="basic-addon2">ml</span>
+                      <p></p>
+                      <label class="col-sm-2 col-form-label">Job Details</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Job Width" aria-label="Job Width" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon1">mm</span>
+                            <input type="text" class="form-control" placeholder="Job Height" aria-label="Job Height" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2">mm</span>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Cutting Time" aria-label="Cutting Time" aria-describedby="basic-addon2" name="inputTime">
+                            <span class="input-group-text" id="basic-addon2">seconds</span>
+                            <select class="form-select" id="inputAsset" name="inputMedia">
+                                <option selected>Select Media</option>
+                                {% for item in media %}
+                                <option value="{{ item.0 }}">{{ item.4 }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
-                    <div class="input-group mb-3">
-                      <input type="text" class="form-control" placeholder="Print Time" aria-label="Print Time" aria-describedby="basic-addon2">
-                      <span class="input-group-text" id="basic-addon2">seconds</span>
-                    </div>
-                  <select class="form-select" id="inputAsset" name="inputAsset">
-                     <option selected>Select Media</option>
-                     {% for item in media %}
-                     <option value="{{ item.0 }}">{{ item.4 }}</option>
-                     {% endfor %}
-                  </select>
-                   </div>
-                  </div>
 
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Submit</button>
