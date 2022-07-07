@@ -11,7 +11,7 @@ calculator_bp = Blueprint(
     static_folder='static'
 )
 
-@calculator_bp.route('/calculator', methods=['GET'])
+@calculator_bp.route('/calculator/vinyl', methods=['GET'])
 def calculator():
 
      if request.method == 'GET':

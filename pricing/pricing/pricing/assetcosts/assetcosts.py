@@ -164,12 +164,12 @@ def edit_asset(asset_id):
 
        # Update the row in the DB
        cur.execute("""UPDATE asset_costs set item=%s,make=%s,model=%s,cost=%s,depreciation_months=%s,monthly_depreciation=%s WHERE id=%s RETURNING *;""", (assetDesc,assetMake,assetModel,assetCost,assetMonths,monthlyDepreciation,asset_id))
-       conn.commit
+       conn.commit()
 
        cur.close
        conn.close()
 
-    return redirect(url_for('assets'))
+    return redirect("/assets")
 
 @assetcosts_bp.route('/assets/editcost/<cost_id>', methods=['GET', 'POST'])
 def edit_cost(cost_id):
