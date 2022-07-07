@@ -26,7 +26,7 @@
               <form class="row g-3" method="POST" action="/calculator/vinyl">
                 <div class="col-md-12">
                   <label for="inputAsset" class="form-label">Select Printer</label>
-                  <select class="form-select" id="inputAsset" name="inputAsset">
+                  <select class="form-select" id="inputAsset" name="jobAsset">
                       <option selected>Choose...</option>
                       {% for item in assets %}
                       <option value="{{ item.0 }}">{{ item.1 }}</option>
@@ -38,15 +38,20 @@
                       <p></p>
                       <label class="col-sm-2 col-form-label">Job Details</label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Job Width" aria-label="Job Width" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control" placeholder="Job Width" aria-label="Job Width" aria-describedby="basic-addon2" name="jobWidth">
                             <span class="input-group-text" id="basic-addon1">mm</span>
-                            <input type="text" class="form-control" placeholder="Job Height" aria-label="Job Height" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control" placeholder="Job Height" aria-label="Job Height" aria-describedby="basic-addon2" name="jobHeight">
                             <span class="input-group-text" id="basic-addon2">mm</span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Cutting Time" aria-label="Cutting Time" aria-describedby="basic-addon2" name="inputTime">
+                            <input type="text" class="form-control" placeholder="Cutting Time" aria-label="Cutting Time" aria-describedby="basic-addon2" name="jobDuration">
                             <span class="input-group-text" id="basic-addon2">seconds</span>
-                            <select class="form-select" id="inputAsset" name="inputMedia">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Number of Decals" aria-label="Number of Decals" aria-describedby="basic-addon2" name="jobQuantity">
+                        </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <select class="form-select" id="inputAsset" name="jobMedia">
                                 <option selected>Select Media</option>
                                 {% for item in media %}
                                 <option value="{{ item.0 }}">{{ item.4 }}</option>

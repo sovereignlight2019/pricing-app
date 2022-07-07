@@ -30,6 +30,9 @@ def calculator_uvprint():
 
 @calculator_bp.route('/calculator/vinyl', methods=['GET'])
 def calculator_vinyl():
+    db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
+    conn = psycopg2.connect(db)
+    cur = conn.cursor()
 
     if request.method == 'GET':
         # Display form
@@ -47,5 +50,26 @@ def calculator_vinyl():
     
     else:
         # Get form info
+
+        asset = request.form['jobAsset']
+        job_width = int(request.form['jobWidth'])
+        job_height = int(request.form['jobHeight'])
+        job_duration = int(request.form['jobDuration'])
+        job_media = request.form['jobMedia']
+        quantity = int(request.form['jobQuantity'])
+
+        cur.execute("""SELECT roll_width,cost FROM media WHERE id = %s RETURNING *;""", (job_media,))
+        media_details = cur.fetchone()
+        cur.close
+        conn.close()
+
+        roll_width = media_details[0]
+        media_cost = media_details[1]
+
+        # Use Job Width to determine job density
+        density = int(roll_width / job_width)
+
+        # Get Media Width and Calculate Job Density
+
 
         return render_template("vinyljob.html")
