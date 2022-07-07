@@ -27,3 +27,20 @@ def calculator_uvprint():
         cur.close
         conn.close()
         return render_template("uvprint.html", media=media_rows,assets=asset_rows)
+
+@calculator_bp.route('/calculator/vinyl', methods=['GET'])
+def calculator_vinyl():
+
+     if request.method == 'GET':
+        # Display form
+        db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
+        conn = psycopg2.connect(db)
+        cur = conn.cursor()
+
+        cur.execute("""SELECT * FROM media;""")
+        media_rows = cur.fetchall()
+        cur.execute("""SELECT * FROM asset_costs;""")
+        asset_rows = cur.fetchall()
+        cur.close
+        conn.close()
+        return render_template("vinyl.html", media=media_rows,assets=asset_rows)
