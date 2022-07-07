@@ -24,5 +24,5 @@ def paper():
     return render_template("paper.html")
 
 @media_bp.route('/media/substrates', methods=['GET'])
-def paper():
+def substrates():
     return render_template("substrates.html")
