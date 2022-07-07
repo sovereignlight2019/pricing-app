@@ -87,8 +87,6 @@ def calculator_vinyl():
 
         total_media_cost = (total_media_usage / 1000) * media_cost
 
-        return(total_media_cost
-
         
 
         # Get Media Width and Calculate Job Density
