@@ -14,7 +14,7 @@ calculator_bp = Blueprint(
 @calculator_bp.route('/calculator/uvprint', methods=['GET'])
 def calculator_uvprint():
 
-     if request.method == 'GET':
+    if request.method == 'GET':
         # Display form
         db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
         conn = psycopg2.connect(db)
@@ -31,7 +31,7 @@ def calculator_uvprint():
 @calculator_bp.route('/calculator/vinyl', methods=['GET'])
 def calculator_vinyl():
 
-     if request.method == 'GET':
+    if request.method == 'GET':
         # Display form
         db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
         conn = psycopg2.connect(db)
@@ -44,3 +44,8 @@ def calculator_vinyl():
         cur.close
         conn.close()
         return render_template("vinyl.html", media=media_rows,assets=asset_rows)
+    
+    else:
+        # Get form info
+
+        return render_template("vinyljob.html")
