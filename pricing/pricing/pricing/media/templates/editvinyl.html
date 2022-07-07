@@ -1,0 +1,66 @@
+{% extends "left_sidebar.html" %}
+{% block main_container %}
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Edit {{ item.4 }}</h1>
+    <nav>
+      <ol class="breadcrumb">
+       <li class="breadcrumb-item"><a href="/">Home</a></li>
+       <li class="breadcrumb-item"><a href="/assets">Media</a></li>
+       <li class="breadcrumb-item"><a href="/media/vinyl/edit/{{ item.0 }}">Edit {{ item.4 }}</a></li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row">
+
+        <div class="col-lg-4">
+
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Add Media</h5>
+                <p></p>
+                    <!-- Multi Columns Form -->
+                  <form class="row g-3" method="POST" action="/media/vinyl/edit/{{ item.0 }}">
+                    <div class="col-md-10">
+                      <label for="inputVendor" class="form-label">Vendor</label>
+                      <input type="text" class="form-control" id="inputVendor" name="inputVendor" value="{{ item.3 }}">
+                    </div>
+                    <div class="col-md-10">
+                        <label for="inputProduct" class="form-label">Product</label>
+                        <input type="text" class="form-control" id="inputProduct" name="inputProduct" value="{{ item.4 }}">
+                      </div>
+                    <div class="col-md-10">
+                        <label for="inputSupplier" class="form-label">Supplier</label>
+                        <input type="text" class="form-control" id="inputSupplier" name="inputSupplier" value="{{ item.5}}">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="inputRollWidth" class="form-label">Roll Width</label>
+                        <input type="text" class="form-control" id="inputRollWidth" name="inputRollWidth" value="{{ item.6 }}">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="inputRollLength" class="form-label">Roll Length</label>
+                        <input type="text" class="form-control" id="inputRollLength" name="inputRollLength" value="{{ item.7 }}">
+                    </div>
+                    <div class="col-md-3">
+                      <label for="inputCost" class="form-label">Cost</label>
+                      <input type="text" class="form-control" id="inputCost" name="inputCost" value="{{ item.11 }}">
+                    </div>
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <button type="reset" class="btn btn-secondary">Reset</button>
+                    </div>
+                  </form><!-- End Multi Columns Form -->
+              </div>
+            </div>
+    
+          </div>
+
+      </div>
+    </div>
+  </section>
+
+</main><!-- End #main -->
+{% endblock %}
