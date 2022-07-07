@@ -40,9 +40,10 @@ def vinyl_add():
         rollwidth = request.form['inputRollWidth']
         rolllength = request.form['inputRollLength']
         cost = request.form['inputCost']
+        type = "vinyl"
 
 
-        cur.execute("""INSERT into media(type,vendor,product,supplier,roll_width,roll_length,cost) VALUES (%s,%s,%s,%s,%s,%s) RETURNING *;""", ('vinyl',vendor,product,supplier,rollwidth,rolllength,cost))
+        cur.execute("""INSERT into media(type,vendor,product,supplier,roll_width,roll_length,cost) VALUES (%s,%s,%s,%s,%s,%s) RETURNING *;""", (type,vendor,product,supplier,rollwidth,rolllength,cost))
         rows = cur.fetchall()
         conn.commit()
         cur.close
