@@ -19,6 +19,37 @@ def media():
 def vinyl():
     return render_template("vinyl.html")
 
+@media_bp.route('/media/vinyl/add', methods=['GET', 'POST'])
+def vinyl_add():
+    db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
+    conn = psycopg2.connect(db)
+    cur = conn.cursor()
+    
+    if request.method == 'GET':
+        # display form
+        cur.execute("""SELECT * FROM running_costs;""")
+        rows = cur.fetchall()
+        return render_template("vinyl.html",list=rows)
+
+    else:
+        # submit form
+
+        vendor= request.form['inputVendor']
+        product = request.form['inputVendor']
+        supplier = request.form['inputSupplier']
+        rollwidth = request.form['inputRollWidth']
+        rolllength = request.form['inputRollLength']
+        cost = request.form['inputCost']
+
+
+        cur.execute("""INSERT into media(vendor,product,supplier,roll_width,roll_length,cost) VALUES (%s,%s,%s,%s,%s,%s) RETURNING *;""", (vendor,product,supplier,rollwidth,rolllength,cost)
+        rows = cur.fetchall()
+        conn.commit()
+        cur.close
+        conn.close()
+
+        return render_template("vinyl.html")
+
 @media_bp.route('/media/paper', methods=['GET'])
 def paper():
     return render_template("paper.html")
