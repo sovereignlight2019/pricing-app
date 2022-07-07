@@ -12,7 +12,7 @@ calculator_bp = Blueprint(
 )
 
 @calculator_bp.route('/calculator/uvprint', methods=['GET'])
-def calculator():
+def calculator_uvprint():
 
      if request.method == 'GET':
         # Display form
@@ -21,7 +21,9 @@ def calculator():
         cur = conn.cursor()
 
         cur.execute("""SELECT * FROM media;""")
+        media_rows = cur.fetchall()
+        cur.execute("""SELECT * FROM asset_costs;""")
         asset_rows = cur.fetchall()
         cur.close
         conn.close()
-        return render_template("uvprint.html", assets=asset_rows)
+        return render_template("uvprint.html", media=media_rows,assets=asset_rows)
