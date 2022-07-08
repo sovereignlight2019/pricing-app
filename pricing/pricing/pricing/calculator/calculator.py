@@ -1,3 +1,4 @@
+from operator import truediv
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from flask import current_app as app
 from configparser import ConfigParser
@@ -63,32 +64,42 @@ def calculator_vinyl():
         cur.close
         conn.close()
 
-        roll_width = media_details[0]
+        # Subtract 25mm from each side
+        roll_width = media_details[0] - 50
         media_cost = media_details[1]
 
-        # Use Job Width to determine job density
-        width_density = int(roll_width / job_width)
-        height_density = int(roll_width / job_height)
+        # Check if job will fit on Media Width
+        if (roll_width / job_width) >= 1:
 
-        # Check best density
-        density = {'height': int(roll_width / job_height), 'width': int(roll_width / job_width)}
-        highest_density = max(density, key=density.get)
+            # Use Job Width to determine job density
+            width_density = int(roll_width / job_width)
+            height_density = int(roll_width / job_height)
 
-        if highest_density is 'width':
-            media_length = job_height
-            number_rows = quantity / int(roll_width / job_width)
-            total_media_usage = math.ceil(job_height * number_rows * 1.1)
+            # Check best density
+            density = {'height': int(roll_width / job_height), 'width': int(roll_width / job_width)}
+            highest_density = max(density, key=density.get)
+
+            if highest_density is 'width':
+                number_rows = quantity / int(roll_width / job_width)
+                excess = number_rows * 25
+                total_media_usage = math.ceil(job_height * number_rows + number_rows)
 
 
+            else:
+        
+                number_rows = quantity / int(roll_width / job_height)
+                excess = number_rows * 25
+                total_media_usage = math.ceil(job_width * number_rows + excess)
+        
         else:
-            media_length = job_width
-            number_of_rows = quantity / int(roll_width / job_height)
-            total_media_usage = math.ceil(job_width * number_rows * 1.1)
+            # Job does not fit horizontally
+            number_rows = quantity / int(roll_width / job_height)
+            excess = number_rows * 25
+            total_media_usage = math.ceil(job_width * number_rows + excess)
 
         total_media_cost = (total_media_usage / 1000) * media_cost
 
-        
-
+        return("Highest Density: " + str(highest_density) + "Number of rows: " + str(number_rows) + "Total Cost: " + str(total_media_cost))
         # Get Media Width and Calculate Job Density
 
 
