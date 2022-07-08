@@ -59,7 +59,7 @@ def calculator_vinyl():
         job_media = request.form['jobMedia']
         quantity = int(request.form['jobQuantity'])
 
-        cur.execute("""SELECT roll_width,cost FROM media WHERE id = %s;""", (job_media,))
+        cur.execute("""SELECT roll_width,cost,product FROM media WHERE id = %s;""", (job_media,))
         media_details = cur.fetchone()
         cur.close
         conn.close()
@@ -67,6 +67,7 @@ def calculator_vinyl():
         # Subtract 25mm from each side
         roll_width = media_details[0] - 50
         media_cost = media_details[1]
+        product_name = media_details[2]
 
         # Check if job will fit on Media Width
         if (roll_width / job_width) >= 1:
@@ -102,4 +103,4 @@ def calculator_vinyl():
         #return("Highest Density: " + str(highest_density) + " Number of rows: " + str(number_rows) + " Media Usage: " + str(total_media_usage) + "mm Total Cost: " + str(total_media_cost))
 
 
-        return render_template("vinyljob.html",density=highest_density,rows=number_rows,media_required=total_media_usage,cost=total_media_cost)
+        return render_template("vinyljob.html",density=highest_density,rows=number_rows,media_required=total_media_usage,cost=total_media_cost,width=job_width,height=job_height,product=product_name)
