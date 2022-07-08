@@ -72,9 +72,6 @@ def calculator_vinyl():
         # Check if job will fit on Media Width
         if (roll_width / job_width) >= 1:
 
-            # Use Job Width to determine job density
-            width_density = int(roll_width / job_width)
-            height_density = int(roll_width / job_height)
 
             # Check best density
             density = {'height': int(roll_width / job_height), 'width': int(roll_width / job_width)}
