@@ -59,7 +59,7 @@ def calculator_vinyl():
         job_media = request.form['jobMedia']
         quantity = int(request.form['jobQuantity'])
 
-        cur.execute("""SELECT roll_width,cost FROM media WHERE id = %s RETURNING *;""", (job_media,))
+        cur.execute("""SELECT roll_width,cost FROM media WHERE id = %s;""", (job_media,))
         media_details = cur.fetchone()
         cur.close
         conn.close()
@@ -80,26 +80,26 @@ def calculator_vinyl():
             highest_density = max(density, key=density.get)
 
             if highest_density is 'width':
-                number_rows = quantity / int(roll_width / job_width)
-                excess = number_rows * 25
-                total_media_usage = math.ceil(job_height * number_rows + number_rows)
+                number_rows = math.ceil(quantity / int(roll_width / job_width))
+                excess = number_rows * 25 + 25
+                total_media_usage = (job_height * number_rows) + excess
 
 
             else:
-        
-                number_rows = quantity / int(roll_width / job_height)
-                excess = number_rows * 25
-                total_media_usage = math.ceil(job_width * number_rows + excess)
-        
+
+                number_rows = math.ceil(quantity / int(roll_width / job_height))
+                excess = number_rows * 25 + 25
+                total_media_usage = (job_width * number_rows) + excess
+
         else:
             # Job does not fit horizontally
             number_rows = quantity / int(roll_width / job_height)
-            excess = number_rows * 25
-            total_media_usage = math.ceil(job_width * number_rows + excess)
+            excess = number_rows * 25 + 25
+            total_media_usage = (job_width * number_rows) + excess
 
         total_media_cost = (total_media_usage / 1000) * media_cost
 
-        return("Highest Density: " + str(highest_density) + "Number of rows: " + str(number_rows) + "Total Cost: " + str(total_media_cost))
+        return("Highest Density: " + str(highest_density) + " Number of rows: " + str(number_rows) + " Media Usage: " + str(total_media_usage) + "mm Total Cost: " + str(total_media_cost))
         # Get Media Width and Calculate Job Density
 
 
