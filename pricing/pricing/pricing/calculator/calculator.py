@@ -99,8 +99,7 @@ def calculator_vinyl():
 
         total_media_cost = (total_media_usage / 1000) * media_cost
 
-        return("Highest Density: " + str(highest_density) + " Number of rows: " + str(number_rows) + " Media Usage: " + str(total_media_usage) + "mm Total Cost: " + str(total_media_cost))
-        # Get Media Width and Calculate Job Density
+        #return("Highest Density: " + str(highest_density) + " Number of rows: " + str(number_rows) + " Media Usage: " + str(total_media_usage) + "mm Total Cost: " + str(total_media_cost))
 
 
-        return render_template("vinyljob.html")
+        return render_template("vinyljob.html",density=highest_density,rows=number_rows,media_required=total_media_usage,cost=total_media_cost)
