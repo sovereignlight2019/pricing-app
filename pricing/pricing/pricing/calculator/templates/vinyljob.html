@@ -23,7 +23,7 @@
             <p>Orientation : <b>{{ density }}</b></p>
             <p>Job Rows : <b>{{ rows }}</b></p>
             <p>Media Sizing Requirements : <b>{{ media_required}} (mm)</b></p>
-            <p>Total Cost of Materials : <b>{{ cost }}</b></p>
+            <p>Total Cost of Materials : <b>£{{'%0.2f'|format(cost|float) }}</b></p>
           </div>
         </div>
 
