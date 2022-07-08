@@ -1,0 +1,50 @@
+{% extends "left_sidebar.html" %}
+{% block main_container %}
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Vinyl Job Cost</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Job Calculator</li>
+        <li class="breadcrumb-item active">Vinly Job Calculator</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-6">
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Job Costing Details</h5>
+            <p>Job Density - Best way to fit decals on the media</p>
+            Orientation : {{ density }}
+            <p>Number of Rows - How many rows job will require</p>
+            Job Rows : {{ rows }}
+            <p>Media Sizing Requirements</p>
+            {{ media_required}} (metres)
+            <p>Total Cost of Materials</p>
+            <b>{{ cost }}</b>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-lg-6">
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Example Card</h5>
+            <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main><!-- End #main -->
+{% endblock %}
