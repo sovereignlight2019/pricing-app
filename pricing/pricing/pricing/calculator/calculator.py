@@ -103,4 +103,4 @@ def calculator_vinyl():
         #return("Highest Density: " + str(highest_density) + " Number of rows: " + str(number_rows) + " Media Usage: " + str(total_media_usage) + "mm Total Cost: " + str(total_media_cost))
 
 
-        return render_template("vinyljob.html",density=highest_density,rows=number_rows,media_required=total_media_usage,cost=total_media_cost,width=job_width,height=job_height,product=product_name)
+        return render_template("vinyljob.html",density=highest_density,rows=number_rows,media_required=total_media_usage,cost=total_media_cost,width=job_width,height=job_height,product=product_name, qty=quantity)
