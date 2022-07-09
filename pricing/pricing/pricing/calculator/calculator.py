@@ -68,25 +68,54 @@ def calculator_vinyl():
         roll_width = media_details[0] - 50
         media_cost = media_details[1]
         product_name = media_details[2]
+        padding = 25
 
         # Check if job will fit on Media Width
         if (roll_width / job_width) >= 1:
 
+            # width density - rounded DOWN to int
+            width_density = int(roll_width / job_width)
+            
+            # number of rows - rounded UP to nearest int
+            number_rows = math.ceil(quantity / width_density)
+            # padding
+            vert_padding = (vertical_padding = number_rows * 25)
+            horiz_padding = (horizontal_padding =  (width_density -1) * 25)
+            # required roll area 
+            roll_area = ((number_rows * job_height) + vert_padding) * roll_width
+            # job area
+            job_area = ((number_rows * job_height) + vert_padding) * ((width_density * job_width) + horiz_padding)
+            # width area density 
+            density_width = job_area / roll_area
+
+            # height density - rounded DOWN to int
+            height_density = int(roll_width / job_height)
+            # number of rows - rounded UP to nearest int
+            number_rows = math.ceil(quantity /height_density)
+            # padding
+            vert_padding = (vertical_padding = number_rows * 25)
+            horiz_padding = (horizontal_padding =  (height_density -1) * 25)
+            # required roll area 
+            roll_area = ((number_rows * job_width) + vert_padding) * roll_width
+            # job area
+            job_area = ((number_rows * job_width) + vert_padding) * ((height_density * job_height) + horiz_padding)
+            # height area density 
+            density_height = job_area / roll_area
 
             # Check best density
-            density = {'height': int(roll_width / job_height), 'width': int(roll_width / job_width)}
+
+            density = {'height': density_height, 'width': density_width}
             highest_density = max(density, key=density.get)
 
             if highest_density is 'width':
                 number_rows = math.ceil(quantity / int(roll_width / job_width))
-                excess = number_rows * 25 + 25
+                excess = number_rows + 50
                 total_media_usage = (job_height * number_rows) + excess
-
 
             else:
 
                 number_rows = math.ceil(quantity / int(roll_width / job_height))
-                excess = number_rows * 25 + 25
+                excess = number_rows + 50
                 total_media_usage = (job_width * number_rows) + excess
 
         else:
