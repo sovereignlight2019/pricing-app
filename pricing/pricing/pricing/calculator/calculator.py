@@ -93,8 +93,8 @@ def calculator_vinyl():
             # number of rows - rounded UP to nearest int
             number_rows = math.ceil(quantity /height_density)
             # padding
-            vert_padding = (vertical_padding = number_rows * 25)
-            horiz_padding = (horizontal_padding =  (height_density -1) * 25)
+            vert_padding = (umber_rows * 25)
+            horiz_padding = (height_density -1) * 25
             # required roll area 
             roll_area = ((number_rows * job_width) + vert_padding) * roll_width
             # job area
