@@ -113,13 +113,13 @@ def calculator_vinyl():
 
             if highest_density is 'width':
                 number_rows = math.ceil(quantity / int(roll_width / job_width))
-                excess = number_rows + 50
+                excess = number_rows * 50
                 total_media_usage = (job_height * number_rows) + excess
 
             else:
 
                 number_rows = math.ceil(quantity / int(roll_width / job_height))
-                excess = number_rows + 50
+                excess = number_rows * 50
                 total_media_usage = (job_width * number_rows) + excess
 
         else:
