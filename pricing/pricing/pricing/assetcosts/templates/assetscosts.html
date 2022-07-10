@@ -89,7 +89,7 @@
           <div class="card-body">
             <h5 class="card-title">Fixed Costs (Overheads)</h5>
             {% if cost.0 %}
-            <h2>Hourly Running Costs : £{{'%0.2f'|format(cost.0/220|float) }}</h2>
+            <h2>Hourly Running Costs : £{{'%0.2f'|format(cost.0|float) }}</h2>
             {% else %}
             <h2>Hourly Running Costs : £0</h2>
             {% endif %}
