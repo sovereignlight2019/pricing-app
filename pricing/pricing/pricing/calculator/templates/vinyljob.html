@@ -37,30 +37,31 @@
             <p></p>
 
               <!-- Radar Chart -->
-              <div id="polarAreaChart"></div>
+                <div id="polarAreaChart"></div>
 
-              <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  new ApexCharts(document.querySelector("#polarAreaChart"), {
-                    series: [ £{{'%0.2f'|format(cost|float) }} ],
-                    chart: {
-                      type: 'polarArea',
-                      height: 350,
-                      toolbar: {
-                        show: true
-                      }
-                    },
-                    labels: [ 'Materials' ],
-                    stroke: {
-                      colors: ['#fff']
-                    },
-                    fill: {
-                      opacity: 0.8
-                    }
-                  }).render();
-                });
-              </script>
-              <!-- End Polar Area Chart -->
+                    <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                    new ApexCharts(document.querySelector("#polarAreaChart"), {
+                        series: [ £{{'%0.2f'|format(cost|float) }} ],
+                        chart: {
+                        type: 'polarArea',
+                        height: 350,
+                        toolbar: {
+                            show: true
+                        }
+                        },
+                        labels: [ 'Materials' ],
+                        stroke: {
+                        colors: ['#fff']
+                        },
+                        fill: {
+                        opacity: 0.8
+                        }
+                    }).render();
+                    });
+                     </script>
+                    <!-- End Polar Area Chart -->
+                </div>
           </div>
         </div>
 
