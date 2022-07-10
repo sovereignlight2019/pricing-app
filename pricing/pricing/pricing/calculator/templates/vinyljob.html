@@ -44,10 +44,10 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>£{{ '%0.2f'|format(totalcost * 1.25 |float) }}</td>
-                    <td>£{{ '%0.2f'|format(totalcost * 1.35 |float) }}</td>
-                    <td>£{{ '%0.2f'|format(totalcost * 1.45 |float) }}</td>
-                    <td>£{{ '%0.2f'|format(totalcost * 1.55 |float) }}</td>
+                    <td>£{{ '%0.2f'|format(totalcost * 1.25 - totalcost|float) }}</td>
+                    <td>£{{ '%0.2f'|format(totalcost * 1.35 - totalcost|float) }}</td>
+                    <td>£{{ '%0.2f'|format(totalcost * 1.45 - totalcost|float) }}</td>
+                    <td>£{{ '%0.2f'|format(totalcost * 1.55 - totalcost|float) }}</td>
                   </tr>
                 </tbody>
               </table>
