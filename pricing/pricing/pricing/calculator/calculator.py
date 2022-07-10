@@ -138,9 +138,9 @@ def calculator_vinyl():
         # Get Machine Cost
         cur.execute("""SELECT monthly_depreciation FROM asset_costs where id=%s;""",(asset,))
         asset_cost = cur.fetchone()
-        assetCost = (asset_cost / 176) * (job_duration/60)
+        assetCost = (asset_cost[0] / 176) * (job_duration/60)
 
-        total_cost = oh_cost + total_media_cost + setup_cost + assetCost
+        total_cost = oh_cost + total_media_cost + assetCost
 
         cur.close
         conn.close()

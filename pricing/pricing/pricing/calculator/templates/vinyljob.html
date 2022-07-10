@@ -24,12 +24,34 @@
             <p>Job Rows : <b>{{ rows }}</b></p>
             <p>Media Sizing Requirements : <b>{{ media_required}} (mm)</b></p>
             <p>Total Cost of Materials : <b>£{{'%0.2f'|format(cost|float) }}</b></p>
-            <p>Job Setup Cost : <b>£{{'%0.2f'|format(setupcost|float) }}</b></p>
             <p>Asset Cost : <b>£{{ '%0.2f'|format(assetcost|float) }}:width</b></p>
             <p>Overhead Cost : <b>£{{'%0.2f'|format(overhead_cost|float) }}</b></p>
             <h5>Total Cost : £{{ '%0.2f'|format(totalcost|float) }}</h5>
           </div>
         </div>
+
+        <h5 class="card-title">Small tables</h5>
+              <p>Profit Calculator</p>
+              <!-- Small tables -->
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">20%</th>
+                    <th scope="col">30%</th>
+                    <th scope="col">40%</th>
+                    <th scope="col">50%</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>£{{ '%0.2f'|format(totalcost|float) * 1.2 }}</td>
+                    <td>£{{ '%0.2f'|format(totalcost|float) * 1.3 }}</td>
+                    <td>£{{ '%0.2f'|format(totalcost|float) * 1.4 }}</td>
+                    <td>£{{ '%0.2f'|format(totalcost|float) * 1.5 }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- End small tables -->
 
       </div>
 
