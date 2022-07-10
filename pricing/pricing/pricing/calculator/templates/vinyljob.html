@@ -33,7 +33,7 @@
 
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Example Card</h5>
+                <h5 class="card-title">Cost Breakdown</h5>
                 <p></p>
 
               <!-- Radar Chart -->
@@ -42,7 +42,7 @@
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
                   new ApexCharts(document.querySelector("#vinylJobCost"), {
-                    series: [ £{{'%0.2f'|format(cost|float) }} ],
+                    series: [ £{{ cost }} ],
                     chart: {
                       type: 'polarArea',
                       height: 350,
@@ -50,7 +50,7 @@
                         show: true
                       }
                     },
-                    labels: [ 'Materials'],
+                    labels: [ 'Materials' ],
                     stroke: {
                       colors: ['#fff']
                     },
