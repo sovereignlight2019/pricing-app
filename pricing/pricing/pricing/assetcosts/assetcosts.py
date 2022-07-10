@@ -30,7 +30,7 @@ def assets():
         asset_rows = cur.fetchall()
         conn.close()
         for row in cost:
-            monthly_cost.append(row[0])
+            monthly_cost.append((row[0]/176))
         cur.close()
         conn.close()
         for row in rows:

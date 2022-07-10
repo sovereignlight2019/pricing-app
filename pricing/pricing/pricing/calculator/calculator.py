@@ -133,7 +133,7 @@ def calculator_vinyl():
         # Get Running Cost
         cur.execute("""SELECT SUM (cost) AS total FROM running_costs;""")
         run_cost = cur.fetchone()
-        oh_cost = (run_cost[0] / 9600) * job_duration
+        oh_cost = (run_cost[0] / 176) * (job_duration/60)
 
         cur.close
         conn.close()
