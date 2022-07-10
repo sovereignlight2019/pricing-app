@@ -24,6 +24,7 @@
             <p>Job Rows : <b>{{ rows }}</b></p>
             <p>Media Sizing Requirements : <b>{{ media_required}} (mm)</b></p>
             <p>Total Cost of Materials : <b>£{{'%0.2f'|format(cost|float) }}</b></p>
+            <p>Overhead Cost : <b>£{{'%0.2f'|format(overhead_cost|float) }}</b></p>
           </div>
         </div>
 
@@ -42,7 +43,7 @@
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
                   new ApexCharts(document.querySelector("#vinylJobCost"), {
-                    series: [ £{{ cost }}, {{ running_cost }} ],
+                    series: [ £{{ cost }}, {{ overhead_cost }} ],
                     chart: {
                       type: 'polarArea',
                       height: 350,
