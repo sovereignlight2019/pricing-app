@@ -135,8 +135,13 @@ def calculator_vinyl():
         run_cost = cur.fetchone()
         oh_cost = (run_cost[0] / 176) * (job_duration/60)
 
-        total_cost = oh_cost + total_media_cost + setup_cost
+        # Get Machine Cost
+        cur.execute("""SELECT monthly_depreciation FROM asset_costs where id=%s;""",(asset,))
+        asset_cost = cur.fetchone()
+        assetCost = (asset_cost / 176) * (job_duration/60)
+
+        total_cost = oh_cost + total_media_cost + setup_cost + assetCost
 
         cur.close
         conn.close()
-        return render_template("vinyljob.html",totalcost=total_cost,setupcost=setup_cost,overhead_cost=oh_cost,density=highest_density,rows=number_rows,media_required=total_media_usage,cost=total_media_cost,width=job_width,height=job_height,product=product_name, qty=quantity,mediaCost=media_cost)
+        return render_template("vinyljob.html",assetcost=assetCost,totalcost=total_cost,setupcost=setup_cost,overhead_cost=oh_cost,density=highest_density,rows=number_rows,media_required=total_media_usage,cost=total_media_cost,width=job_width,height=job_height,product=product_name, qty=quantity,mediaCost=media_cost)
