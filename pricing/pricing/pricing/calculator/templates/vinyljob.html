@@ -42,7 +42,7 @@
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
                   new ApexCharts(document.querySelector("#vinylJobCost"), {
-                    series: [ £{{ cost }} ],
+                    series: [ £{{ cost }}, {{ running_cost }} ],
                     chart: {
                       type: 'polarArea',
                       height: 350,
@@ -50,7 +50,7 @@
                         show: true
                       }
                     },
-                    labels: [ 'Materials' ],
+                    labels: [ 'Materials','Overhead Cost' ],
                     stroke: {
                       colors: ['#fff']
                     },

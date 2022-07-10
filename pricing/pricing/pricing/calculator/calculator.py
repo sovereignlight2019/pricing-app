@@ -61,8 +61,7 @@ def calculator_vinyl():
 
         cur.execute("""SELECT roll_width,cost,product FROM media WHERE id = %s;""", (job_media,))
         media_details = cur.fetchone()
-        cur.close
-        conn.close()
+
 
         # Subtract 25mm from each side
         roll_width = media_details[0] - 50
@@ -130,7 +129,11 @@ def calculator_vinyl():
 
         total_media_cost = (total_media_usage / 1000) * media_cost
 
-        #return("Highest Density: " + str(highest_density) + " Number of rows: " + str(number_rows) + " Media Usage: " + str(total_media_usage) + "mm Total Cost: " + str(total_media_cost))
+        # Get Running Cost
+        cur.execute("""SELECT SUM (cost) AS total FROM running_costs;""")
+        run_cost = cur.fetchone()
+        oh_cost = (run_cost[0] / 9600) * job_duration
 
-
-        return render_template("vinyljob.html",density=highest_density,rows=number_rows,media_required=total_media_usage,cost=total_media_cost,width=job_width,height=job_height,product=product_name, qty=quantity,mediaCost=media_cost)
+        cur.close
+        conn.close()
+        return render_template("vinyljob.html",overhead_cost=oh_cost,density=highest_density,rows=number_rows,media_required=total_media_usage,cost=total_media_cost,width=job_width,height=job_height,product=product_name, qty=quantity,mediaCost=media_cost)
