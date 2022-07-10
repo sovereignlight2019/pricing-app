@@ -28,7 +28,7 @@ def vinyl():
     cur.close
     conn.close()
     
-    return render_template("vinyl.html",list=rows)
+    return render_template("vinylmedia.html",list=rows)
 
 
 @media_bp.route('/media/vinyl/add', methods=['GET', 'POST'])
@@ -43,7 +43,7 @@ def vinyl_add():
         rows = cur.fetchall()
         cur.close
         conn.close()
-        return render_template("vinyl.html",list=rows)
+        return render_template("vinylmedia.html",list=rows)
 
     else:
         # submit form
