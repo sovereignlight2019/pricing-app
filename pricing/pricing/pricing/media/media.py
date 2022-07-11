@@ -183,7 +183,6 @@ def paper_edit(id):
         # Update table row
         conn = psycopg2.connect(db)
         cur = conn.cursor()
-        cur.execute("""INSERT into media(type,vendor,product,supplier,paper_size,paper_weight,qty,cost) VALUES (%s,%s,%s,%s,%s,%s,%s,%s) RETURNING *;""", (type,vendor,product,supplier,papersize,paperweight,paperqty,cost))
         cur.execute(
            "UPDATE media SET vendor=%s, product=%s, supplier=%s, paper_size=%s, paper_weight=%s, qty=%s, cost=%s"        
            " WHERE id=%s",
