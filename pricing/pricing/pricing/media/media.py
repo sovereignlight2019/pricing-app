@@ -22,7 +22,7 @@ def vinyl():
     cur = conn.cursor()
     
     # display form
-    cur.execute("""SELECT * FROM media;""")
+    cur.execute("""SELECT * FROM media WHERE type = 'vinyl';""")
     rows = cur.fetchall()
     conn.commit()
     cur.close
@@ -37,7 +37,7 @@ def paper():
     cur = conn.cursor()
     
     # display form
-    cur.execute("""SELECT * FROM media_stock where ;""")
+    cur.execute("""SELECT * FROM media_stock WHERE type='paper' ;""")
     rows = cur.fetchall()
     conn.commit()
     cur.close
@@ -54,7 +54,7 @@ def vinyl_add():
     
     if request.method == 'GET':
         # display form
-        cur.execute("""SELECT * FROM media;""")
+        cur.execute("""SELECT * FROM media where type = 'vinyl';""")
         rows = cur.fetchall()
         cur.close
         conn.close()
