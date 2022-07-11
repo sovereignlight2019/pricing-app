@@ -31,7 +31,7 @@ def vinyl():
     return render_template("vinylmedia.html",list=rows)
 
 @media_bp.route('/media/paper', methods=['GET'])
-def vinyl():
+def paper():
     db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
     conn = psycopg2.connect(db)
     cur = conn.cursor()
@@ -79,6 +79,41 @@ def vinyl_add():
         conn.close()
 
         return redirect("/media/vinyl")
+
+@media_bp.route('/media/paper/add', methods=['GET', 'POST'])
+def paper_add():
+    db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
+    conn = psycopg2.connect(db)
+    cur = conn.cursor()
+    
+    if request.method == 'GET':
+        # display form
+        cur.execute("""SELECT * FROM media WHERE type = 'paper';""")
+        rows = cur.fetchall()
+        cur.close
+        conn.close()
+        return render_template("paper.html",list=rows)
+
+    else:
+        # submit form
+
+        vendor= request.form['inputVendor']
+        product = request.form['inputProduct']
+        supplier = request.form['inputSupplier']
+        papersize = request.form['inputPaperSize']
+        paperweight = request.form['inputRollWeight']
+        paperqty = request.form['inputPaperQTY']
+        cost = request.form['inputCost']
+        type = "paper"
+
+
+        cur.execute("""INSERT into media(type,vendor,product,supplier,paper_size,paper_weight,paper_qty,cost) VALUES (%s,%s,%s,%s,%s,%s,%s,%s) RETURNING *;""", (type,vendor,product,supplier,papersize,paperweight,paperqty,cost))
+        rows = cur.fetchall()
+        conn.commit()
+        cur.close
+        conn.close()
+
+        return redirect("/media/paper")
 
 @media_bp.route('/media/vinyl/edit/<id>', methods=['GET', 'POST'])
 def vinyl_edit(id):
