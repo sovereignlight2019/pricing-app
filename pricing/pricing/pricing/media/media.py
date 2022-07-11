@@ -30,6 +30,21 @@ def vinyl():
     
     return render_template("vinylmedia.html",list=rows)
 
+@media_bp.route('/media/paper', methods=['GET'])
+def vinyl():
+    db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
+    conn = psycopg2.connect(db)
+    cur = conn.cursor()
+    
+    # display form
+    cur.execute("""SELECT * FROM media_stock where ;""")
+    rows = cur.fetchall()
+    conn.commit()
+    cur.close
+    conn.close()
+    
+    return render_template("papermedia.html",list=rows)
+
 
 @media_bp.route('/media/vinyl/add', methods=['GET', 'POST'])
 def vinyl_add():

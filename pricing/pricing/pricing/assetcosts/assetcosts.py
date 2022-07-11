@@ -74,6 +74,7 @@ def add_cost():
         for row in rows:
             my_list.append(row)
 
+        return redirect("/assets")
         return render_template("assetscosts.html", results=my_list, cost=monthly_cost, assets=asset_rows)
 
 @assetcosts_bp.route('/assets/addasset', methods=['GET', 'POST'])
