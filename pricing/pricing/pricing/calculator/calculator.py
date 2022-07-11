@@ -41,7 +41,7 @@ def calculator_vinyl():
         conn = psycopg2.connect(db)
         cur = conn.cursor()
 
-        cur.execute("""SELECT * FROM media;""")
+        cur.execute("""SELECT * FROM media where type = 'vinyl';""")
         media_rows = cur.fetchall()
         cur.execute("""SELECT * FROM asset_costs;""")
         asset_rows = cur.fetchall()
@@ -60,7 +60,7 @@ def calculator_vinyl():
         quantity = int(request.form['jobQuantity'])
         setup_cost = float(request.form['setupCost'])
 
-        cur.execute("""SELECT roll_width,cost,product FROM media WHERE id = %s;""", (job_media,))
+        cur.execute("""SELECT roll_width,cost,product FROM media WHERE type = vinyl and id = %s;""", (job_media,))
         media_details = cur.fetchone()
 
 
