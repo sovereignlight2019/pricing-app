@@ -3,7 +3,7 @@
 <main id="main" class="main">
 
   <div class="pagetitle">
-    <h1>Vinyl Media</h1>
+    <h1>Paper & Cardstock</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -78,10 +78,19 @@
                 </div>
                 <div class="col-md-3">
                     <label for="inputRollWidth" class="form-label">Paper Size</label>
+                      <select class="form-select" id="inputAsset" name="inputPaperSize">
+                          <option selected>Select Paper Size</option>
+                          <option value="SRA2">SRA2</option>
+                          <option value="SRA3">SRA3</option>
+                          <option value="A2">A3</option>
+                          <option value="A3">A2</option>
+                          <option value="A4">A4</option>
+                      </select>
+                  </div>
                     <input type="text" class="form-control" id="inputPaperSize" name="inputPaperSize">
                 </div>
                 <div class="col-md-3">
-                    <label for="inputRollLength" class="form-label">Paper Weight</label>
+                    <label for="inputRollLength" class="form-label">Paper Weight (gsm)</label>
                     <input type="text" class="form-control" id="inputPaperWeight" name="inputPaperWeight">
                 </div>
                 <div class="col-md-3">
