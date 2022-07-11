@@ -157,12 +157,14 @@ def vinyl_edit(id):
 @media_bp.route('/media/paper/edit/<id>', methods=['GET', 'POST'])
 def paper_edit(id):
 
+    return(id)
+
     db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
     conn = psycopg2.connect(db)
     cur = conn.cursor()
 
     if request.method == 'GET':
-        cur.execute("""SELECT * FROM media WHERE id = %s;""", (id))
+        cur.execute("""SELECT * FROM media WHERE id = %s;""", (int(id),))
         row = cur.fetchone()
         cur.close
         conn.close()
