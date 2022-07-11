@@ -154,12 +154,6 @@ def vinyl_edit(id):
 
         return redirect("/media/vinyl")
 
-
-
-@media_bp.route('/media/paper', methods=['GET'])
-def paper():
-    return render_template("paper.html")
-
 @media_bp.route('/media/substrates', methods=['GET'])
 def substrates():
     return render_template("substrates.html")
