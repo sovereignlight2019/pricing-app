@@ -154,6 +154,47 @@ def vinyl_edit(id):
 
         return redirect("/media/vinyl")
 
+@media_bp.route('/media/paper/edit/<id>', methods=['GET', 'POST'])
+def paper_edit(id):
+
+    db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
+    conn = psycopg2.connect(db)
+    cur = conn.cursor()
+
+    if request.method == 'GET':
+        cur.execute("""SELECT * FROM media WHERE id = %s;""", (id))
+        row = cur.fetchone()
+        cur.close
+        conn.close()
+    
+        return render_template("editpaper.html", item=row)
+
+    else:
+        # Get Form data
+        vendor= request.form['inputVendor']
+        product = request.form['inputProduct']
+        supplier = request.form['inputSupplier']
+        papersize = request.form['inputPaperSize']
+        paperweight = request.form['inputPaperWeight']
+        paperqty = request.form['inputPaperQTY']
+        cost = request.form['inputCost']
+        type = "paper"
+
+        # Update table row
+        conn = psycopg2.connect(db)
+        cur = conn.cursor()
+        cur.execute("""INSERT into media(type,vendor,product,supplier,paper_size,paper_weight,qty,cost) VALUES (%s,%s,%s,%s,%s,%s,%s,%s) RETURNING *;""", (type,vendor,product,supplier,papersize,paperweight,paperqty,cost))
+        cur.execute(
+           "UPDATE media SET vendor=%s, product=%s, supplier=%s, paper_size=%s, paper_weight=%s, qty=%s, cost=%s"        
+           " WHERE id=%s",
+           (vendor,product,supplier,papersize,paperweight,paperqty,cost,int(id),));
+        updated_rows = cur.rowcount
+        conn.commit()
+        cur.close
+        conn.close()
+
+        return redirect("/media/paper")
+
 @media_bp.route('/media/substrates', methods=['GET'])
 def substrates():
     return render_template("substrates.html")
