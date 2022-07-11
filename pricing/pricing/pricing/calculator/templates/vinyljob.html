@@ -37,6 +37,7 @@
               <table class="table table-sm">
                 <thead>
                   <tr>
+                    <th></th>
                     <th scope="col">25%</th>
                     <th scope="col">35%</th>
                     <th scope="col">45%</th>
@@ -45,6 +46,14 @@
                 </thead>
                 <tbody>
                   <tr>
+                    <td>Price</td>
+                    <td>£{{ '%0.2f'|format(totalcost * 1.25|float) }}</td>
+                    <td>£{{ '%0.2f'|format(totalcost * 1.35|float) }}</td>
+                    <td>£{{ '%0.2f'|format(totalcost * 1.45|float) }}</td>
+                    <td>£{{ '%0.2f'|format(totalcost * 1.55|float) }}</td>
+                  </tr>
+                  <tr>
+                    <td>Profit</td>
                     <td>£{{ '%0.2f'|format(totalcost * 1.25 - totalcost|float) }}</td>
                     <td>£{{ '%0.2f'|format(totalcost * 1.35 - totalcost|float) }}</td>
                     <td>£{{ '%0.2f'|format(totalcost * 1.45 - totalcost|float) }}</td>

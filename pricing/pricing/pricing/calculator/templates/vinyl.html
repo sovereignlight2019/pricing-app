@@ -25,7 +25,7 @@
                 <!-- Multi Columns Form -->
               <form class="row g-3" method="POST" action="/calculator/vinyl">
                 <div class="col-md-12">
-                  <label for="jobAsset" class="form-label">Select Printer</label>
+                  <label for="jobAsset" class="form-label">Select Printer/Cutter</label>
                   <select class="form-select" id="jobAsset" name="jobAsset">
                       <option selected>Choose...</option>
                       {% for item in assets %}
@@ -36,7 +36,7 @@
 
                   <div class="row mb-5">
                       <p></p>
-                      <label class="col-sm-2 col-form-label">Job Details</label>
+                      <label class="col-sm-2 col-form-label">Sizing Details</label>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Job Width" aria-label="Job Width" aria-describedby="basic-addon2" name="jobWidth">
                             <span class="input-group-text" id="basic-addon1">mm</span>
@@ -44,9 +44,11 @@
                             <span class="input-group-text" id="basic-addon2">mm</span>
                         </div>
                         <div class="input-group mb-3">
+                          <label class="col-sm-2 col-form-label">Set Up Cost</label>
                           <span class="input-group-text" id="basic-addon2">£</span>
                           <input type="text" class="form-control" placeholder="setupCost" aria-label="setupCost" aria-describedby="basic-addon2" name="setupCost">
                         <div class="input-group mb-3">
+                            <label class="col-sm-2 col-form-label">Job Duration</label>
                             <input type="text" class="form-control" placeholder="Cutting Time" aria-label="Cutting Time" aria-describedby="basic-addon2" name="jobDuration">
                             <span class="input-group-text" id="basic-addon2">minutes</span>
                         <div class="input-group mb-3">
