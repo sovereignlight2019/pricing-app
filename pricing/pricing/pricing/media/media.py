@@ -157,8 +157,6 @@ def vinyl_edit(id):
 @media_bp.route('/media/paper/edit/<id>', methods=['GET', 'POST'])
 def paper_edit(id):
 
-    return(id)
-
     db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
     conn = psycopg2.connect(db)
     cur = conn.cursor()
