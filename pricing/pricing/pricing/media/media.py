@@ -37,7 +37,7 @@ def paper():
     cur = conn.cursor()
     
     # display form
-    cur.execute("""SELECT * FROM media_stock WHERE type='paper' ;""")
+    cur.execute("""SELECT * FROM media WHERE type='paper' ;""")
     rows = cur.fetchall()
     conn.commit()
     cur.close
