@@ -144,4 +144,4 @@ def calculator_vinyl():
 
         cur.close
         conn.close()
-        return render_template("vinyljob.html",setupcost=setup_cost,assetcost=assetCost,totalcost=total_cost,setupcost=setup_cost,overhead_cost=oh_cost,density=highest_density,rows=number_rows,media_required=total_media_usage,cost=total_media_cost,width=job_width,height=job_height,product=product_name, qty=quantity,mediaCost=media_cost)
+        return render_template("vinyljob.html",assetcost=assetCost,totalcost=total_cost,setupcost=setup_cost,overhead_cost=oh_cost,density=highest_density,rows=number_rows,media_required=total_media_usage,cost=total_media_cost,width=job_width,height=job_height,product=product_name,qty=quantity,mediaCost=media_cost)
