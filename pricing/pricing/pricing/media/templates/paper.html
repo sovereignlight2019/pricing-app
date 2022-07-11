@@ -3,35 +3,100 @@
 <main id="main" class="main">
 
   <div class="pagetitle">
-    <h1>Blank Page</h1>
+    <h1>Vinyl Media</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
         <li class="breadcrumb-item">Media</li>
-        <li class="breadcrumb-item active"><a href="/media">Paper</a></li>
+        <li class="breadcrumb-item active"><a href="/paper">Paper / Cardstock</a></li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
 
   <section class="section">
     <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-8">
 
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Example Card</h5>
-            <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
+            <h5 class="card-title">Paper & Cardstock List</h5>
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+                <thead>
+                  <tr>
+                    <th scope="col">Vendor</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Supplier</th>
+                    <th scope="col">Paper Size</th>
+                    <th scope="col">Paper Weight</th>
+                    <th scope="col">QTY</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Edit</th>
+                    <th</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in list %}
+                  <tr>
+                    <td>{{ item.3 }}</td>
+                    <td>{{ item.4 }}</td>
+                    <td>{{ item.5 }}</td>
+                    <td>{{ item.6 }}</td>
+                    <td>{{ item.7 }}</td>
+                    <td></td>
+                    <td>{{ '%0.2f'|format(item.11) }}</td>
+                    <td><a href="/media/paper/edit/{{ item.0 }}"><button type="button" class="btn btn-warning"><i class="ri ri-file-edit-line"></i></button></a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
           </div>
         </div>
 
       </div>
 
-      <div class="col-lg-6">
+      <div class="col-lg-4">
 
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Example Card</h5>
-            <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
+            <h5 class="card-title">Add Media</h5>
+            <p></p>
+                <!-- Multi Columns Form -->
+              <form class="row g-3" method="POST" action="/media/paper/add">
+                <div class="col-md-10">
+                  <label for="inputVendor" class="form-label">Vendor</label>
+                  <input type="text" class="form-control" id="inputVendor" name="inputVendor">
+                </div>
+                <div class="col-md-10">
+                    <label for="inputProduct" class="form-label">Product</label>
+                    <input type="text" class="form-control" id="inputProduct" name="inputProduct">
+                  </div>
+                <div class="col-md-10">
+                    <label for="inputSupplier" class="form-label">Supplier</label>
+                    <input type="text" class="form-control" id="inputSupplier" name="inputSupplier">
+                </div>
+                <div class="col-md-3">
+                    <label for="inputRollWidth" class="form-label">Paper Size</label>
+                    <input type="text" class="form-control" id="inputPaperSize" name="inputPaperSize">
+                </div>
+                <div class="col-md-3">
+                    <label for="inputRollLength" class="form-label">Paper Weight</label>
+                    <input type="text" class="form-control" id="inputPaperWeight" name="inputPaperWeight">
+                </div>
+                <div class="col-md-3">
+                  <label for="inputRollLength" class="form-label">Paper QTY</label>
+                  <input type="text" class="form-control" id="inputPaperQTY" name="inputPaperQTY">
+              </div>
+                <div class="col-md-3">
+                  <label for="inputCost" class="form-label">Cost</label>
+                  <input type="text" class="form-control" id="inputCost" name="inputCost">
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+              </form><!-- End Multi Columns Form -->
           </div>
         </div>
 
