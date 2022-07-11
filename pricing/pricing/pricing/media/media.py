@@ -92,7 +92,7 @@ def paper_add():
         rows = cur.fetchall()
         cur.close
         conn.close()
-        return render_template("paper.html",list=rows)
+        return render_template("papermedia.html",list=rows)
 
     else:
         # submit form
@@ -101,13 +101,13 @@ def paper_add():
         product = request.form['inputProduct']
         supplier = request.form['inputSupplier']
         papersize = request.form['inputPaperSize']
-        paperweight = request.form['inputRollWeight']
+        paperweight = request.form['inputPaperWeight']
         paperqty = request.form['inputPaperQTY']
         cost = request.form['inputCost']
         type = "paper"
 
 
-        cur.execute("""INSERT into media(type,vendor,product,supplier,paper_size,paper_weight,paper_qty,cost) VALUES (%s,%s,%s,%s,%s,%s,%s,%s) RETURNING *;""", (type,vendor,product,supplier,papersize,paperweight,paperqty,cost))
+        cur.execute("""INSERT into media(type,vendor,product,supplier,paper_size,paper_weight,qty,cost) VALUES (%s,%s,%s,%s,%s,%s,%s,%s) RETURNING *;""", (type,vendor,product,supplier,papersize,paperweight,paperqty,cost))
         rows = cur.fetchall()
         conn.commit()
         cur.close
