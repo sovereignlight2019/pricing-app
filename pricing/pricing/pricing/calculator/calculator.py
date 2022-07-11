@@ -12,8 +12,8 @@ calculator_bp = Blueprint(
     static_folder='static'
 )
 
-@calculator_bp.route('/calculator/uvprint', methods=['GET'])
-def calculator_uvprint():
+@calculator_bp.route('/calculator/digitalprint', methods=['GET'])
+def calculator_digitalprint():
 
     if request.method == 'GET':
         # Display form
@@ -21,13 +21,13 @@ def calculator_uvprint():
         conn = psycopg2.connect(db)
         cur = conn.cursor()
 
-        cur.execute("""SELECT * FROM media;""")
+        cur.execute("""SELECT * FROM media where type = 'paper';""")
         media_rows = cur.fetchall()
         cur.execute("""SELECT * FROM asset_costs;""")
         asset_rows = cur.fetchall()
         cur.close
         conn.close()
-        return render_template("uvprint.html", media=media_rows,assets=asset_rows)
+        return render_template("digitalprint.html", media=media_rows,assets=asset_rows)
 
 @calculator_bp.route('/calculator/vinyl', methods=['GET', 'POST'])
 def calculator_vinyl():
