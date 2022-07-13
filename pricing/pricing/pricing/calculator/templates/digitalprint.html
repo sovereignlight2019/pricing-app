@@ -25,15 +25,22 @@
                 <!-- Multi Columns Form -->
               <form class="row g-3" method="POST" action="/calculator">
                 <div class="col-md-12">
-                  <label for="inputAsset" class="form-label">Select Printer</label>
+                  <label for="inputAsset" class="form-label">Select Printer & Media</label>
                   <select class="form-select" id="inputAsset" name="inputAsset">
                       <option selected>Choose...</option>
                       {% for item in assets %}
                       <option value="{{ item.0 }}">{{ item.1 }}</option>
                       {% endfor %}
                   </select>
+                  <select class="form-select" id="inputAsset" name="inputAsset">
+                    <option selected>Select Media</option>
+                      {% for item in media %}
+                      <option value="{{ item.0 }}">{{ item.4 }}</option>
+                      {% endfor %}
+                  </select>
                 </div>
                 <div class="row mb-5">
+                  <p></p>
                     <fieldset class="row mb-3">
                         <legend class="col-form-label col-sm-2 pt-0">Print Options</legend>
                         <div class="col-sm-10">
@@ -50,56 +57,81 @@
                             </label>
                           </div>
                         </div>
-                      </fieldset>
-                  <p></p>
-                  <label class="col-sm-2 col-form-label">Vivid Options</label>
-                    <div class="col-sm-10">
-                      <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="primerInk">
-                        <label class="form-check-label" for="primerInk" name="primerInk">White</label>
-                      </div>
-                      <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="glossInk">
-                        <label class="form-check-label" for="glossInk" name="glossInk">Gloss</label>
-                      </div>
-                      <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="whiteInk">
-                        <label class="form-check-label" for="whiteInk" name="whiteInk">Silver</label>
-                      </div>
-                      <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="embossInk">
-                        <label class="form-check-label" for="embossInk" name="embossInk">Gold</label>
-                      </div>
+                    </fieldset>
+                <p></p>
+                <label class="col-sm-2 col-form-label">Vivid Options</label>
+                <div class="col-sm-10">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="primerInk">
+                      <label class="form-check-label" for="primerInk" name="primerInk">White</label>
                     </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="glossInk">
+                      <label class="form-check-label" for="glossInk" name="glossInk">Gloss</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="whiteInk">
+                      <label class="form-check-label" for="whiteInk" name="whiteInk">Silver</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="embossInk">
+                      <label class="form-check-label" for="embossInk" name="embossInk">Gold</label>
+                    </div>
+                </div>
 
                 <div class="row mb-5">
-                  <p></p>
-                  <label class="col-sm-2 col-form-label">Job Details</label>
+                    <p></p>
+                    <label class="col-sm-2 col-form-label">Job Details</label>
                     <div class="col-sm-10">
-                      <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">£</span>
-                        <input type="text" class="form-control" placeholder="Ink Cost" aria-label="Ink Cost" aria-describedby="basic-addon2">
-                        <input type="text" class="form-control" placeholder="Ink Usage" aria-label="Ink Usage" aria-describedby="basic-addon2">
-                        <span class="input-group-text" id="basic-addon2">ml</span>
-                      </div>
+                        <select class="form-select" id="inputAsset" name="paperSize">
+                          <option selected>Select Paper Size</option>
+                          <option value="SRA3">SRA3</option>
+                          <option value="A3">A3</option>
+                          <option value="A4">A4</option>
+                          <option value="A5">A5</option>
+                        </select>
+                        <select class="form-select" id="finishSize" name="finishSize">
+                          <option selected>Select Print Size Size</option>
+                          <option value="A3">A3</option>
+                          <option value="A4">A4</option>
+                          <option value="A5">A5</option>
+                          <option value="A6">A6</option>
+                          <option value="A7">A7</option>
+                          <option value="DL">DL</option>
+                        </select>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Print Time" aria-label="Print Time" aria-describedby="basic-addon2">
+                            <span class="input-group-text" id="basic-addon2">Minutes</span>
+                        </div>
                     </div>
-                      <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Print Time" aria-label="Print Time" aria-describedby="basic-addon2">
-                        <span class="input-group-text" id="basic-addon2">seconds</span>
-                      </div>
-                      <select class="form-select" id="inputAsset" name="inputAsset">
-                        <option selected>Select Media</option>
-                        {% for item in media %}
-                        <option value="{{ item.0 }}">{{ item.4 }}</option>
-                        {% endfor %}
-                      </select>
+                    <div class="col-sm-10">
+                    </div>
+                    <p></p>
+                    <label class="col-sm-2 col-form-label">Vivid Options</label>
+                    <div class="col-sm-10">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="primerInk">
+                            <label class="form-check-label" for="primerInk" name="primerInk">White</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="glossInk">
+                            <label class="form-check-label" for="glossInk" name="glossInk">Gloss</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="whiteInk">
+                            <label class="form-check-label" for="whiteInk" name="whiteInk">Silver</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="embossInk">
+                            <label class="form-check-label" for="embossInk" name="embossInk">Gold</label>
+                        </div>
                     </div>
                 </div>
 
-                <div class="text-center">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                  <button type="reset" class="btn btn-secondary">Reset</button>
-                </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+              </div>
 
               </form><!-- End Multi Columns Form -->
 

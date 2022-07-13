@@ -124,9 +124,10 @@ def calculator_vinyl():
 
         else:
             # Job does not fit horizontally
-            number_rows = quantity / int(roll_width / job_height)
-            excess = number_rows * 25 + 25
+            number_rows = math.ceil(quantity / int(roll_width / job_height))
+            excess = number_rows * 50
             total_media_usage = (job_width * number_rows) + excess
+            highest_density = 'height'
 
         total_media_cost = (total_media_usage / 1000) * media_cost
 
