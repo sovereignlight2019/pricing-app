@@ -83,7 +83,7 @@
                     <p></p>
                     <label class="col-sm-2 col-form-label">Job Details</label>
                     <div class="col-sm-10">
-                        <select class="form-select" id="inputAsset" name="paperSize">
+                        <select class="form-select" id="paperSize" name="paperSize">
                           <option selected>Select Paper Size</option>
                           <option value="SRA3">SRA3</option>
                           <option value="A3">A3</option>
@@ -103,27 +103,30 @@
                             <input type="text" class="form-control" placeholder="Print Time" aria-label="Print Time" aria-describedby="basic-addon2">
                             <span class="input-group-text" id="basic-addon2">Minutes</span>
                         </div>
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" placeholder="Number of Decals" aria-label="Number of Prints" aria-describedby="basic-addon2" name="jobQuantity">
+                        </div>
                     </div>
                     <div class="col-sm-10">
                     </div>
                     <p></p>
-                    <label class="col-sm-2 col-form-label">Vivid Options</label>
+                    <label class="col-sm-2 col-form-label">Finishing Options</label>
                     <div class="col-sm-10">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="primerInk">
-                            <label class="form-check-label" for="primerInk" name="primerInk">White</label>
+                            <input class="form-check-input" type="checkbox" id="laminated">
+                            <label class="form-check-label" for="laminated" name="laminated">Laminated</label>
                         </div>
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="glossInk">
-                            <label class="form-check-label" for="glossInk" name="glossInk">Gloss</label>
+                            <input class="form-check-input" type="checkbox" id="folded">
+                            <label class="form-check-label" for="folded" name="folded">Folded</label>
                         </div>
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="whiteInk">
-                            <label class="form-check-label" for="whiteInk" name="whiteInk">Silver</label>
+                            <input class="form-check-input" type="checkbox" id="creased">
+                            <label class="form-check-label" for="creased" name="creased">Creased</label>
                         </div>
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="embossInk">
-                            <label class="form-check-label" for="embossInk" name="embossInk">Gold</label>
+                            <input class="form-check-input" type="checkbox" id="numbered">
+                            <label class="form-check-label" for="numbered" name="numbered">Numbered</label>
                         </div>
                     </div>
                 </div>
