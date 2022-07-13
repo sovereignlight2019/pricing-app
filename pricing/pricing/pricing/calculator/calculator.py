@@ -14,9 +14,9 @@ calculator_bp = Blueprint(
 
 @calculator_bp.route('/calculator/digitalprint', methods=['GET'])
 def calculator_digitalprint():
-        db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
-        conn = psycopg2.connect(db)
-        cur = conn.cursor()
+    db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
+    conn = psycopg2.connect(db)
+    cur = conn.cursor()
 
     if request.method == 'GET':
         # Display form
