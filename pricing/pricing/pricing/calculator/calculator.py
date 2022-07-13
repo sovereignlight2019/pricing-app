@@ -14,13 +14,12 @@ calculator_bp = Blueprint(
 
 @calculator_bp.route('/calculator/digitalprint', methods=['GET'])
 def calculator_digitalprint():
-
-    if request.method == 'GET':
-        # Display form
         db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
         conn = psycopg2.connect(db)
         cur = conn.cursor()
 
+    if request.method == 'GET':
+        # Display form
         cur.execute("""SELECT * FROM media where type = 'paper';""")
         media_rows = cur.fetchall()
         cur.execute("""SELECT * FROM asset_costs;""")
@@ -28,6 +27,46 @@ def calculator_digitalprint():
         cur.close
         conn.close()
         return render_template("digitalprint.html", media=media_rows,assets=asset_rows)
+
+    else:
+        # Get costing details
+        impression_cost = 0.06
+        
+        # Get form info
+
+        asset = request.form['jobAsset']
+        job_media = int(request.form['media'])
+        print_option = request.form['printRadios']
+        
+        if request.form['whiteInk']:
+            white_ink = 1
+        if request.form['glossInk']:
+            gloss_ink = 1
+        if request.form['silverInk']:
+            silver_ink = 1
+        if request.form['goldInk']:
+            gold_ink = 1
+        
+        job_duration = int(request.form['jobDuration'])
+        paper_size = int(request.form['paperSize'])
+        print_size = int(request.form['finishSize'])
+
+        if request.form['laminated']:
+            laminated = 1
+        if request.form['creased']:
+            creased = 1
+        if request.form['folded']:
+            folded = 1
+        if request.form['numbered']:
+            numbered = 1
+
+        
+        quantity = int(request.form['jobQuantity'])
+        setup_cost = float(request.form['setupCost'])
+
+        cur.execute("""SELECT paper_size,cost,product FROM media WHERE type = paper and id = %s;""", (job_media,))
+        media_details = cur.fetchone()
+
 
 @calculator_bp.route('/calculator/vinyl', methods=['GET', 'POST'])
 def calculator_vinyl():
@@ -37,10 +76,6 @@ def calculator_vinyl():
 
     if request.method == 'GET':
         # Display form
-        db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
-        conn = psycopg2.connect(db)
-        cur = conn.cursor()
-
         cur.execute("""SELECT * FROM media where type = 'vinyl';""")
         media_rows = cur.fetchall()
         cur.execute("""SELECT * FROM asset_costs;""")
