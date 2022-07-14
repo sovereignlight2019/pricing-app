@@ -37,7 +37,6 @@ def calculator_digitalprint():
         asset = request.form['jobAsset']
         job_media = int(request.form['media'])
         print_option = request.form['printRadios']
-        
         if request.form['whiteInk']:
             white_ink = 1
         if request.form['glossInk']:
@@ -46,11 +45,9 @@ def calculator_digitalprint():
             silver_ink = 1
         if request.form['goldInk']:
             gold_ink = 1
-        
         job_duration = int(request.form['jobDuration'])
         paper_size = int(request.form['paperSize'])
         print_size = int(request.form['finishSize'])
-
         if request.form['laminated']:
             laminated = 1
         if request.form['creased']:
@@ -59,14 +56,50 @@ def calculator_digitalprint():
             folded = 1
         if request.form['numbered']:
             numbered = 1
-
-        
         quantity = int(request.form['jobQuantity'])
         setup_cost = float(request.form['setupCost'])
 
-        cur.execute("""SELECT paper_size,cost,product FROM media WHERE type = paper and id = %s;""", (job_media,))
+        # Get machine cost
+        cur.execute("""SELECT monthly_depreciation FROM asset_costs where id=%s;""",(asset,))
+        asset_cost = cur.fetchone()
+        assetCost = (asset_cost[0] / 176) * (job_duration/60)
+
+        # Get Media cost
+        cur.execute("""SELECT paper_size,cost,product,cost/qty::float AS (sheet_cost) FROM media WHERE type = paper and id = %s;""", (job_media,))
         media_details = cur.fetchone()
 
+        # Get Prints per Page
+        SRA2 = { 'SRA3': 2, 'A3': 2, 'A4:': 4, 'A5': 8, 'A6': 16, 'DL': 12}
+        SRA3 = { 'A3': 1, 'A4': 2, 'A5': 4, 'A6': 8, 'DL': 6 }
+        A4 = { 'A4': 1, 'A5': 2, 'A6': 4, 'DL': 3}
+        if paper_size is 'SRA3':
+            prints_per_page = SRA3[print_size]
+        if paper_size is 'A3':
+            prints_per_page = SRA3[print_size]
+        if paper_size is 'A4':
+            prints_per_page = A4[print_size]
+        
+        # Get number of impressions
+        if print_option is 'simplex':
+            number_impressions = quantity / prints_per_page * print_option
+        else:
+            number_impressions = 2 * quantity / prints_per_page
+
+        # Get Paper Quantity
+        number_sheets = media_details['paper_size'] / paper_size
+
+        # Get Machine Costs
+
+
+        jobCost = { 'impressions': number_impressions * impression_cost,
+                     'paper_cost': number_sheets * media_details['sheet_cost'],
+                     'printer_cost': assetCost
+                }
+        
+        total_cost = sum(jobCost.values())
+        return("Total Cost: £" + str(jobCost))
+        cur.close
+        conn.close()
 
 @calculator_bp.route('/calculator/vinyl', methods=['GET', 'POST'])
 def calculator_vinyl():
