@@ -128,7 +128,7 @@ def calculator_vinyl():
         quantity = int(request.form['jobQuantity'])
         setup_cost = float(request.form['setupCost'])
 
-        cur.execute("""SELECT roll_width,cost,product FROM media WHERE type = vinyl and id = %s;""", (job_media,))
+        cur.execute("""SELECT roll_width,cost,product FROM media WHERE type = "vinyl" and id = %s;""", (job_media,))
         media_details = cur.fetchone()
 
 
