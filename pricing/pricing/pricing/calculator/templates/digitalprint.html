@@ -8,7 +8,7 @@
       <ol class="breadcrumb">
        <li class="breadcrumb-item"><a href="/">Home</a></li>
        <li class="breadcrumb-item"><a href="/">Job Calculator</a></li>
-       <li class="breadcrumb-item"><a href="/calculator/uvprint">Digital Job Calculator</a></li>
+       <li class="breadcrumb-item"><a href="/calculator/digitalprint">Digital Job Calculator</a></li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
@@ -26,13 +26,13 @@
               <form class="row g-3" method="POST" action="/calculator/digitalprint">
                 <div class="col-md-12">
                   <label for="inputAsset" class="form-label">Select Printer & Media</label>
-                  <select class="form-select" id="inputAsset" name="inputAsset">
+                  <select class="form-select" id="jobAsset" name="jobAsset">
                       <option selected>Choose...</option>
                       {% for item in assets %}
                       <option value="{{ item.0 }}">{{ item.1 }}</option>
                       {% endfor %}
                   </select>
-                  <select class="form-select" id="inputAsset" name="inputAsset">
+                  <select class="form-select" id="media" name="media">
                     <option selected>Select Media</option>
                       {% for item in media %}
                       <option value="{{ item.0 }}">{{ item.4 }}</option>
@@ -62,20 +62,20 @@
                 <label class="col-sm-2 col-form-label">Vivid Options</label>
                 <div class="col-sm-10">
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="primerInk">
-                      <label class="form-check-label" for="primerInk" name="primerInk">White</label>
+                      <input class="form-check-input" type="checkbox" id="whiteInk">
+                      <label class="form-check-label" for="whiteInk" name="whiteInk" value="whiteInk">White</label>
                     </div>
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="glossInk">
                       <label class="form-check-label" for="glossInk" name="glossInk">Gloss</label>
                     </div>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="whiteInk">
-                      <label class="form-check-label" for="whiteInk" name="whiteInk">Silver</label>
+                      <input class="form-check-input" type="checkbox" id="silverInk">
+                      <label class="form-check-label" for="silverInk" name="silverInk">Silver</label>
                     </div>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="embossInk">
-                      <label class="form-check-label" for="embossInk" name="embossInk">Gold</label>
+                      <input class="form-check-input" type="checkbox" id="goldInk">
+                      <label class="form-check-label" for="goldInk" name="goldInk">Gold</label>
                     </div>
                 </div>
 
