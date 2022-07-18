@@ -65,7 +65,7 @@ def calculator_digitalprint():
         assetCost = (asset_cost[0] / 176) * (job_duration/60)
 
         # Get Media cost
-        cur.execute("""SELECT paper_size,cost,product,cost/qty::float AS (sheet_cost) FROM media WHERE type = paper and id = %s;""", (job_media,))
+        cur.execute("""SELECT paper_size,cost,product,cost/qty::float AS (sheet_cost) FROM media WHERE id = %s;""", (job_media,))
         media_details = cur.fetchone()
 
         # Get Prints per Page
@@ -128,7 +128,7 @@ def calculator_vinyl():
         quantity = int(request.form['jobQuantity'])
         setup_cost = float(request.form['setupCost'])
 
-        cur.execute("""SELECT roll_width,cost,product FROM media WHERE type = "vinyl" and id = %s;""", (job_media,))
+        cur.execute("""SELECT roll_width,cost,product FROM media WHERE id = %s;""", (job_media,))
         media_details = cur.fetchone()
 
 
