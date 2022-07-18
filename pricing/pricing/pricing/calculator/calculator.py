@@ -12,7 +12,7 @@ calculator_bp = Blueprint(
     static_folder='static'
 )
 
-@calculator_bp.route('/calculator/digitalprint', methods=['GET'])
+@calculator_bp.route('/calculator/digitalprint', methods=['GET', 'POST'])
 def calculator_digitalprint():
     db = "dbname=sprocket user=sprocket password=Sprocket123 host=localhost"
     conn = psycopg2.connect(db)
