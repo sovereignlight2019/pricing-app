@@ -139,43 +139,65 @@ def calculator_vinyl():
         padding = 25
 
         # Check if job will fit on Media Width
-        if (roll_width / job_width) >= 1:
+        # For job to fit in roll width / job width has to be greater than 1 
+        if (roll_width / job_width) or (roll_width / job_height)>= 1:
 
             # width density - rounded DOWN to int
+            # based on above if statement width density has to be at least 1
+            # use int() to round down
             width_density = int(roll_width / job_width)
+            # Check set the density to job quantity if it is greater.
+            # eg - if density is 4 and qty is 2, then set density to qty
             if width_density > quantity:
                 width_density = quantity
             
             # number of rows - rounded UP to nearest int
+            # Number of rows is the quantity divided by the density
+            # rounded up to the row
             number_rows = math.ceil(quantity / width_density)
             # padding
+            # add the space between rows and columns
             vert_padding = number_rows * 25
             horiz_padding = (width_density -1) * 25
-            # required roll area 
+
+            # Calculate the required roll area 
             roll_area = ((number_rows * job_height) + vert_padding) * roll_width
-            # job area
+            # Calculate job area
             job_area = ((number_rows * job_height) + vert_padding) * ((width_density * job_width) + horiz_padding)
+            
             # width area density 
             density_width = job_area / roll_area
 
+            # -----------------------------------
+
             # height density - rounded DOWN to int
             height_density = int(roll_width / job_height)
+            
+            # Check set the density to job quantity if it is greater.
+            # eg - if density is 4 and qty is 2, then set density to qty
             if height_density > quantity:
                 height_density = quantity
+            
             # number of rows - rounded UP to nearest int
-            number_rows = math.ceil(quantity /height_density)
+            # Number of rows is the quantity divided by the density
+            # rounded up to the row
+            number_rows = math.ceil(quantity / height_density)
             # padding
+            # add the space between rows and columns
             vert_padding = (number_rows * 25)
             horiz_padding = (height_density -1) * 25
+
             # required roll area 
             roll_area = ((number_rows * job_width) + vert_padding) * roll_width
             # job area
             job_area = ((number_rows * job_width) + vert_padding) * ((height_density * job_height) + horiz_padding)
+            
             # height area density 
             density_height = job_area / roll_area
 
             # Check best density
-
+            # This is done by calculating the area ration between the different orientations
+            # Take the media area needed  and divide by the area of the total job
             density = {'height': density_height, 'width': density_width}
             highest_density = max(density, key=density.get)
 
@@ -189,13 +211,10 @@ def calculator_vinyl():
                 number_rows = math.ceil(quantity / int(roll_width / job_height))
                 excess = number_rows * 50
                 total_media_usage = (job_width * number_rows) + excess
-
+        
         else:
-            # Job does not fit horizontally
-            number_rows = math.ceil(quantity / int(roll_width / job_height))
-            excess = number_rows * 50
-            total_media_usage = (job_width * number_rows) + excess
-            highest_density = 'height'
+            # Return Error
+            return("ERROR JOB DOES NOT FIT")
 
         total_media_cost = (total_media_usage / 1000) * media_cost
 
